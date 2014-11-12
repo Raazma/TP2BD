@@ -46,15 +46,25 @@
             this.TB_Code = new System.Windows.Forms.TextBox();
             this.DGV_Emp = new System.Windows.Forms.DataGridView();
             this.lb_programmes = new System.Windows.Forms.ListBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.Btn_Insert = new System.Windows.Forms.Button();
             this.Btn_liste = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.CB_TypeRecherche = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.TB_RechercheNom = new System.Windows.Forms.TextBox();
+            this.LB_RechercheNom = new System.Windows.Forms.Label();
+            this.BT_Recherche = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Emp)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // Btn_Conec
             // 
-            this.Btn_Conec.Location = new System.Drawing.Point(164, 485);
+            this.Btn_Conec.Location = new System.Drawing.Point(818, 399);
             this.Btn_Conec.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Btn_Conec.Name = "Btn_Conec";
             this.Btn_Conec.Size = new System.Drawing.Size(127, 31);
@@ -65,10 +75,10 @@
             // 
             // Btn_cancel
             // 
-            this.Btn_cancel.Location = new System.Drawing.Point(340, 487);
+            this.Btn_cancel.Location = new System.Drawing.Point(818, 448);
             this.Btn_cancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Btn_cancel.Name = "Btn_cancel";
-            this.Btn_cancel.Size = new System.Drawing.Size(119, 28);
+            this.Btn_cancel.Size = new System.Drawing.Size(127, 28);
             this.Btn_cancel.TabIndex = 1;
             this.Btn_cancel.Text = "Deconnection";
             this.Btn_cancel.UseVisualStyleBackColor = true;
@@ -76,7 +86,7 @@
             // 
             // Tb_Numemp
             // 
-            this.Tb_Numemp.Location = new System.Drawing.Point(536, 15);
+            this.Tb_Numemp.Location = new System.Drawing.Point(127, 25);
             this.Tb_Numemp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Tb_Numemp.Name = "Tb_Numemp";
             this.Tb_Numemp.Size = new System.Drawing.Size(132, 22);
@@ -84,7 +94,7 @@
             // 
             // Tn_Nom
             // 
-            this.Tn_Nom.Location = new System.Drawing.Point(536, 76);
+            this.Tn_Nom.Location = new System.Drawing.Point(127, 65);
             this.Tn_Nom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Tn_Nom.Name = "Tn_Nom";
             this.Tn_Nom.Size = new System.Drawing.Size(132, 22);
@@ -92,7 +102,7 @@
             // 
             // Tb_Prenom
             // 
-            this.Tb_Prenom.Location = new System.Drawing.Point(536, 137);
+            this.Tb_Prenom.Location = new System.Drawing.Point(127, 108);
             this.Tb_Prenom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Tb_Prenom.Name = "Tb_Prenom";
             this.Tb_Prenom.Size = new System.Drawing.Size(132, 22);
@@ -100,7 +110,7 @@
             // 
             // Tb_salaire
             // 
-            this.Tb_salaire.Location = new System.Drawing.Point(536, 209);
+            this.Tb_salaire.Location = new System.Drawing.Point(127, 153);
             this.Tb_salaire.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Tb_salaire.Name = "Tb_salaire";
             this.Tb_salaire.Size = new System.Drawing.Size(132, 22);
@@ -108,7 +118,7 @@
             // 
             // Tb_Echelon
             // 
-            this.Tb_Echelon.Location = new System.Drawing.Point(536, 282);
+            this.Tb_Echelon.Location = new System.Drawing.Point(127, 199);
             this.Tb_Echelon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Tb_Echelon.Name = "Tb_Echelon";
             this.Tb_Echelon.Size = new System.Drawing.Size(132, 22);
@@ -116,7 +126,7 @@
             // 
             // Tb_Adresse
             // 
-            this.Tb_Adresse.Location = new System.Drawing.Point(536, 346);
+            this.Tb_Adresse.Location = new System.Drawing.Point(127, 242);
             this.Tb_Adresse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Tb_Adresse.Name = "Tb_Adresse";
             this.Tb_Adresse.Size = new System.Drawing.Size(132, 22);
@@ -125,7 +135,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(436, 18);
+            this.label1.Location = new System.Drawing.Point(27, 28);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 17);
@@ -135,7 +145,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(436, 76);
+            this.label2.Location = new System.Drawing.Point(59, 68);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 17);
@@ -145,7 +155,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(436, 145);
+            this.label3.Location = new System.Drawing.Point(39, 108);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 17);
@@ -155,7 +165,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(436, 213);
+            this.label4.Location = new System.Drawing.Point(44, 153);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 17);
@@ -165,17 +175,17 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(436, 290);
+            this.label5.Location = new System.Drawing.Point(37, 199);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 17);
             this.label5.TabIndex = 12;
-            this.label5.Text = "Echalon";
+            this.label5.Text = "Echelon";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(440, 354);
+            this.label6.Location = new System.Drawing.Point(36, 242);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(60, 17);
@@ -185,7 +195,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(436, 411);
+            this.label7.Location = new System.Drawing.Point(29, 288);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(67, 17);
@@ -194,7 +204,7 @@
             // 
             // TB_Code
             // 
-            this.TB_Code.Location = new System.Drawing.Point(536, 402);
+            this.TB_Code.Location = new System.Drawing.Point(127, 288);
             this.TB_Code.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TB_Code.Name = "TB_Code";
             this.TB_Code.Size = new System.Drawing.Size(132, 22);
@@ -205,12 +215,12 @@
             this.DGV_Emp.AllowUserToAddRows = false;
             this.DGV_Emp.AllowUserToDeleteRows = false;
             this.DGV_Emp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGV_Emp.Location = new System.Drawing.Point(3, 18);
+            this.DGV_Emp.Location = new System.Drawing.Point(279, 22);
             this.DGV_Emp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DGV_Emp.Name = "DGV_Emp";
             this.DGV_Emp.ReadOnly = true;
             this.DGV_Emp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_Emp.Size = new System.Drawing.Size(425, 241);
+            this.DGV_Emp.Size = new System.Drawing.Size(526, 481);
             this.DGV_Emp.TabIndex = 16;
             // 
             // lb_programmes
@@ -223,26 +233,16 @@
             "SCT",
             "MTN",
             "TCN"});
-            this.lb_programmes.Location = new System.Drawing.Point(3, 354);
+            this.lb_programmes.Location = new System.Drawing.Point(79, 22);
             this.lb_programmes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lb_programmes.Name = "lb_programmes";
             this.lb_programmes.Size = new System.Drawing.Size(101, 100);
             this.lb_programmes.TabIndex = 17;
             this.lb_programmes.SelectedIndexChanged += new System.EventHandler(this.lb_programmes_SelectedIndexChanged);
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(-1, 335);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(97, 17);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Departements\r\n";
-            // 
             // Btn_Insert
             // 
-            this.Btn_Insert.Location = new System.Drawing.Point(536, 468);
+            this.Btn_Insert.Location = new System.Drawing.Point(98, 329);
             this.Btn_Insert.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Btn_Insert.Name = "Btn_Insert";
             this.Btn_Insert.Size = new System.Drawing.Size(100, 28);
@@ -253,7 +253,7 @@
             // 
             // Btn_liste
             // 
-            this.Btn_liste.Location = new System.Drawing.Point(191, 282);
+            this.Btn_liste.Location = new System.Drawing.Point(77, 475);
             this.Btn_liste.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Btn_liste.Name = "Btn_liste";
             this.Btn_liste.Size = new System.Drawing.Size(100, 28);
@@ -262,38 +262,129 @@
             this.Btn_liste.UseVisualStyleBackColor = true;
             this.Btn_liste.Click += new System.EventHandler(this.Btn_liste_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.Tb_Numemp);
+            this.groupBox1.Controls.Add(this.Tn_Nom);
+            this.groupBox1.Controls.Add(this.Btn_Insert);
+            this.groupBox1.Controls.Add(this.Tb_Prenom);
+            this.groupBox1.Controls.Add(this.Tb_salaire);
+            this.groupBox1.Controls.Add(this.Tb_Echelon);
+            this.groupBox1.Controls.Add(this.Tb_Adresse);
+            this.groupBox1.Controls.Add(this.TB_Code);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Location = new System.Drawing.Point(812, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(302, 374);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Insertion";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.BT_Recherche);
+            this.groupBox2.Controls.Add(this.LB_RechercheNom);
+            this.groupBox2.Controls.Add(this.TB_RechercheNom);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.CB_TypeRecherche);
+            this.groupBox2.Location = new System.Drawing.Point(12, 17);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(260, 188);
+            this.groupBox2.TabIndex = 22;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Recherche";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lb_programmes);
+            this.groupBox3.Location = new System.Drawing.Point(12, 211);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(260, 130);
+            this.groupBox3.TabIndex = 23;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Departement";
+            // 
+            // CB_TypeRecherche
+            // 
+            this.CB_TypeRecherche.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CB_TypeRecherche.FormattingEnabled = true;
+            this.CB_TypeRecherche.Items.AddRange(new object[] {
+            "Tous les employés",
+            "Le nom",
+            "Le nom du département"});
+            this.CB_TypeRecherche.Location = new System.Drawing.Point(50, 20);
+            this.CB_TypeRecherche.Name = "CB_TypeRecherche";
+            this.CB_TypeRecherche.Size = new System.Drawing.Size(204, 24);
+            this.CB_TypeRecherche.TabIndex = 0;
+            this.CB_TypeRecherche.SelectedIndexChanged += new System.EventHandler(this.CB_TypeRecherche_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 25);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(38, 17);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Par :";
+            // 
+            // TB_RechercheNom
+            // 
+            this.TB_RechercheNom.Location = new System.Drawing.Point(123, 63);
+            this.TB_RechercheNom.Name = "TB_RechercheNom";
+            this.TB_RechercheNom.Size = new System.Drawing.Size(131, 22);
+            this.TB_RechercheNom.TabIndex = 3;
+            this.TB_RechercheNom.Visible = false;
+            // 
+            // LB_RechercheNom
+            // 
+            this.LB_RechercheNom.AutoSize = true;
+            this.LB_RechercheNom.Location = new System.Drawing.Point(76, 66);
+            this.LB_RechercheNom.Name = "LB_RechercheNom";
+            this.LB_RechercheNom.Size = new System.Drawing.Size(41, 17);
+            this.LB_RechercheNom.TabIndex = 4;
+            this.LB_RechercheNom.Text = "Nom:";
+            this.LB_RechercheNom.Visible = false;
+            // 
+            // BT_Recherche
+            // 
+            this.BT_Recherche.Location = new System.Drawing.Point(79, 122);
+            this.BT_Recherche.Name = "BT_Recherche";
+            this.BT_Recherche.Size = new System.Drawing.Size(101, 23);
+            this.BT_Recherche.TabIndex = 5;
+            this.BT_Recherche.Text = "Rechercher";
+            this.BT_Recherche.UseVisualStyleBackColor = true;
+            this.BT_Recherche.Visible = false;
+            this.BT_Recherche.Click += new System.EventHandler(this.BT_Recherche_Click);
+            // 
             // Tb_CodeDep
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(775, 530);
+            this.ClientSize = new System.Drawing.Size(1126, 527);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.Btn_liste);
-            this.Controls.Add(this.Btn_Insert);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.lb_programmes);
             this.Controls.Add(this.DGV_Emp);
-            this.Controls.Add(this.TB_Code);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.Tb_Adresse);
-            this.Controls.Add(this.Tb_Echelon);
-            this.Controls.Add(this.Tb_salaire);
-            this.Controls.Add(this.Tb_Prenom);
-            this.Controls.Add(this.Tn_Nom);
-            this.Controls.Add(this.Tb_Numemp);
             this.Controls.Add(this.Btn_cancel);
             this.Controls.Add(this.Btn_Conec);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Tb_CodeDep";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Tb_CodeDep_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Emp)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -317,9 +408,16 @@
         private System.Windows.Forms.TextBox TB_Code;
         private System.Windows.Forms.DataGridView DGV_Emp;
         private System.Windows.Forms.ListBox lb_programmes;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button Btn_Insert;
         private System.Windows.Forms.Button Btn_liste;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox CB_TypeRecherche;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button BT_Recherche;
+        private System.Windows.Forms.Label LB_RechercheNom;
+        private System.Windows.Forms.TextBox TB_RechercheNom;
     }
 }
 

@@ -23,6 +23,7 @@ namespace TP2BD
             InitializeComponent();
         }
 
+        private bool RechercheParNom;
         private void Btn_Conec_Click(object sender, EventArgs e)
         {
             string Dsource = "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)" +
@@ -108,6 +109,105 @@ namespace TP2BD
                  MessageBox.Show(ex.Message.ToString());
 
              }
+        }
+
+        private void Tb_CodeDep_Load(object sender, EventArgs e)
+        {
+            CB_TypeRecherche.SelectedIndex = 0;
+        }
+
+        private void CB_TypeRecherche_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (oraconn.State == ConnectionState.Open)
+            {
+                ComboBox Choix = (ComboBox)sender;
+                switch (Choix.SelectedIndex)
+                {
+                    case 1:
+                        TB_RechercheNom.Visible = true;
+                        LB_RechercheNom.Visible = true;
+                        BT_Recherche.Visible = true;
+                        RechercheParNom = true;
+                        break;
+
+                    case 2:
+                        TB_RechercheNom.Visible = true;
+                        LB_RechercheNom.Visible = true;
+                        BT_Recherche.Visible = true;
+                        RechercheParNom = false;
+                        break;
+
+                    default:
+                        TB_RechercheNom.Visible = false;
+                        LB_RechercheNom.Visible = false;
+                        BT_Recherche.Visible = false;
+                        string Commande = "Select NOM,PRENOM,CODEDEP FROM EMPLOYES";
+                        try
+                        {
+                            OracleDataAdapter Data = new OracleDataAdapter(Commande, oraconn);
+                            DataSet lesINFoCoalis = new DataSet();
+                            Data.Fill(lesINFoCoalis, "Employes");
+                            Data.Dispose();
+                            BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "Employes");
+
+                            DGV_Emp.DataSource = TheSOUSSE;
+
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message.ToString());
+
+                        }
+                        break;
+                }
+            }
+        }
+
+        private void BT_Recherche_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(TB_RechercheNom.Text))
+            {
+                if (RechercheParNom)
+                {
+                    string Commande = "Select NOM,PRENOM,CODEDEP FROM EMPLOYES where Nom like '"+TB_RechercheNom.Text+"%'";
+                        try
+                        {
+                            OracleDataAdapter Data = new OracleDataAdapter(Commande, oraconn);
+                            DataSet lesINFoCoalis = new DataSet();
+                            Data.Fill(lesINFoCoalis, "Employes");
+                            Data.Dispose();
+                            BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "Employes");
+
+                            DGV_Emp.DataSource = TheSOUSSE;
+
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message.ToString());
+
+                        }
+                }
+                else
+                {
+                    string Commande = "Select EMPLOYES.NOM,EMPLOYES.PRENOM,EMPLOYES.CODEDEP, Departements.NomDepartement FROM EMPLOYES inner join Departements on EMPLOYES.CodeDep=Departements.CodeDep where Departements.NomDepartement like '" + TB_RechercheNom.Text + "%'";
+                    try
+                    {
+                        OracleDataAdapter Data = new OracleDataAdapter(Commande, oraconn);
+                        DataSet lesINFoCoalis = new DataSet();
+                        Data.Fill(lesINFoCoalis, "Employes");
+                        Data.Dispose();
+                        BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "Employes");
+
+                        DGV_Emp.DataSource = TheSOUSSE;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message.ToString());
+
+                    }
+                }
+            }
         }
     }
 }
