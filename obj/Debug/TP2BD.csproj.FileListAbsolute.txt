@@ -1,0 +1,10 @@
+C:\Users\201037629\Desktop\TP2BD\TP2BD\bin\Debug\TP2BD.exe.config
+C:\Users\201037629\Desktop\TP2BD\TP2BD\bin\Debug\TP2BD.exe
+C:\Users\201037629\Desktop\TP2BD\TP2BD\bin\Debug\TP2BD.pdb
+C:\Users\201037629\Desktop\TP2BD\TP2BD\bin\Debug\Oracle.DataAccess.dll
+C:\Users\201037629\Desktop\TP2BD\TP2BD\obj\Debug\TP2BD.csprojResolveAssemblyReference.cache
+C:\Users\201037629\Desktop\TP2BD\TP2BD\obj\Debug\TP2BD.Tb_CodeDep.resources
+C:\Users\201037629\Desktop\TP2BD\TP2BD\obj\Debug\TP2BD.Properties.Resources.resources
+C:\Users\201037629\Desktop\TP2BD\TP2BD\obj\Debug\TP2BD.csproj.GenerateResource.Cache
+C:\Users\201037629\Desktop\TP2BD\TP2BD\obj\Debug\TP2BD.exe
+C:\Users\201037629\Desktop\TP2BD\TP2BD\obj\Debug\TP2BD.pdb
