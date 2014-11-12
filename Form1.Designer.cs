@@ -253,7 +253,7 @@
             // 
             // Btn_liste
             // 
-            this.Btn_liste.Location = new System.Drawing.Point(261, 379);
+            this.Btn_liste.Location = new System.Drawing.Point(164, 382);
             this.Btn_liste.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Btn_liste.Name = "Btn_liste";
             this.Btn_liste.Size = new System.Drawing.Size(100, 28);
