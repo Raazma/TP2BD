@@ -54,10 +54,9 @@
             // 
             // Btn_Conec
             // 
-            this.Btn_Conec.Location = new System.Drawing.Point(164, 485);
-            this.Btn_Conec.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_Conec.Location = new System.Drawing.Point(123, 394);
             this.Btn_Conec.Name = "Btn_Conec";
-            this.Btn_Conec.Size = new System.Drawing.Size(127, 31);
+            this.Btn_Conec.Size = new System.Drawing.Size(95, 25);
             this.Btn_Conec.TabIndex = 0;
             this.Btn_Conec.Text = "Connexion";
             this.Btn_Conec.UseVisualStyleBackColor = true;
@@ -65,10 +64,9 @@
             // 
             // Btn_cancel
             // 
-            this.Btn_cancel.Location = new System.Drawing.Point(340, 487);
-            this.Btn_cancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_cancel.Location = new System.Drawing.Point(255, 396);
             this.Btn_cancel.Name = "Btn_cancel";
-            this.Btn_cancel.Size = new System.Drawing.Size(119, 28);
+            this.Btn_cancel.Size = new System.Drawing.Size(89, 23);
             this.Btn_cancel.TabIndex = 1;
             this.Btn_cancel.Text = "Deconnection";
             this.Btn_cancel.UseVisualStyleBackColor = true;
@@ -76,128 +74,114 @@
             // 
             // Tb_Numemp
             // 
-            this.Tb_Numemp.Location = new System.Drawing.Point(536, 15);
-            this.Tb_Numemp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Tb_Numemp.Location = new System.Drawing.Point(402, 12);
             this.Tb_Numemp.Name = "Tb_Numemp";
-            this.Tb_Numemp.Size = new System.Drawing.Size(132, 22);
+            this.Tb_Numemp.Size = new System.Drawing.Size(100, 20);
             this.Tb_Numemp.TabIndex = 2;
             // 
             // Tn_Nom
             // 
-            this.Tn_Nom.Location = new System.Drawing.Point(536, 76);
-            this.Tn_Nom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Tn_Nom.Location = new System.Drawing.Point(402, 62);
             this.Tn_Nom.Name = "Tn_Nom";
-            this.Tn_Nom.Size = new System.Drawing.Size(132, 22);
+            this.Tn_Nom.Size = new System.Drawing.Size(100, 20);
             this.Tn_Nom.TabIndex = 3;
             // 
             // Tb_Prenom
             // 
-            this.Tb_Prenom.Location = new System.Drawing.Point(536, 137);
-            this.Tb_Prenom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Tb_Prenom.Location = new System.Drawing.Point(402, 111);
             this.Tb_Prenom.Name = "Tb_Prenom";
-            this.Tb_Prenom.Size = new System.Drawing.Size(132, 22);
+            this.Tb_Prenom.Size = new System.Drawing.Size(100, 20);
             this.Tb_Prenom.TabIndex = 4;
             // 
             // Tb_salaire
             // 
-            this.Tb_salaire.Location = new System.Drawing.Point(536, 209);
-            this.Tb_salaire.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Tb_salaire.Location = new System.Drawing.Point(402, 170);
             this.Tb_salaire.Name = "Tb_salaire";
-            this.Tb_salaire.Size = new System.Drawing.Size(132, 22);
+            this.Tb_salaire.Size = new System.Drawing.Size(100, 20);
             this.Tb_salaire.TabIndex = 5;
             // 
             // Tb_Echelon
             // 
-            this.Tb_Echelon.Location = new System.Drawing.Point(536, 282);
-            this.Tb_Echelon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Tb_Echelon.Location = new System.Drawing.Point(402, 229);
             this.Tb_Echelon.Name = "Tb_Echelon";
-            this.Tb_Echelon.Size = new System.Drawing.Size(132, 22);
+            this.Tb_Echelon.Size = new System.Drawing.Size(100, 20);
             this.Tb_Echelon.TabIndex = 6;
             // 
             // Tb_Adresse
             // 
-            this.Tb_Adresse.Location = new System.Drawing.Point(536, 346);
-            this.Tb_Adresse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Tb_Adresse.Location = new System.Drawing.Point(402, 281);
             this.Tb_Adresse.Name = "Tb_Adresse";
-            this.Tb_Adresse.Size = new System.Drawing.Size(132, 22);
+            this.Tb_Adresse.Size = new System.Drawing.Size(100, 20);
             this.Tb_Adresse.TabIndex = 7;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(436, 18);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(327, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 17);
+            this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 8;
             this.label1.Text = "Num Emp";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(436, 76);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(327, 62);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 17);
+            this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 9;
             this.label2.Text = "Nom";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(436, 145);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(327, 118);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 17);
+            this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 10;
             this.label3.Text = "Prenom";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(436, 213);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(327, 173);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 17);
+            this.label4.Size = new System.Drawing.Size(39, 13);
             this.label4.TabIndex = 11;
             this.label4.Text = "Salaire";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(436, 290);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(327, 236);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 17);
+            this.label5.Size = new System.Drawing.Size(46, 13);
             this.label5.TabIndex = 12;
             this.label5.Text = "Echalon";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(440, 354);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(330, 288);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 17);
+            this.label6.Size = new System.Drawing.Size(45, 13);
             this.label6.TabIndex = 13;
             this.label6.Text = "Adresse";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(436, 411);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(327, 334);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 17);
+            this.label7.Size = new System.Drawing.Size(52, 13);
             this.label7.TabIndex = 14;
             this.label7.Text = "CodeDep";
             // 
             // TB_Code
             // 
-            this.TB_Code.Location = new System.Drawing.Point(536, 402);
-            this.TB_Code.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TB_Code.Location = new System.Drawing.Point(402, 327);
             this.TB_Code.Name = "TB_Code";
-            this.TB_Code.Size = new System.Drawing.Size(132, 22);
+            this.TB_Code.Size = new System.Drawing.Size(100, 20);
             this.TB_Code.TabIndex = 15;
             // 
             // DGV_Emp
@@ -205,47 +189,42 @@
             this.DGV_Emp.AllowUserToAddRows = false;
             this.DGV_Emp.AllowUserToDeleteRows = false;
             this.DGV_Emp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGV_Emp.Location = new System.Drawing.Point(3, 18);
-            this.DGV_Emp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DGV_Emp.Location = new System.Drawing.Point(2, 15);
             this.DGV_Emp.Name = "DGV_Emp";
             this.DGV_Emp.ReadOnly = true;
             this.DGV_Emp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_Emp.Size = new System.Drawing.Size(425, 241);
+            this.DGV_Emp.Size = new System.Drawing.Size(319, 196);
             this.DGV_Emp.TabIndex = 16;
             // 
             // lb_programmes
             // 
             this.lb_programmes.FormattingEnabled = true;
-            this.lb_programmes.ItemHeight = 16;
             this.lb_programmes.Items.AddRange(new object[] {
             "CTP",
             "RSH",
             "SCT",
             "MTN",
             "TCN"});
-            this.lb_programmes.Location = new System.Drawing.Point(3, 354);
-            this.lb_programmes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lb_programmes.Location = new System.Drawing.Point(2, 288);
             this.lb_programmes.Name = "lb_programmes";
-            this.lb_programmes.Size = new System.Drawing.Size(101, 100);
+            this.lb_programmes.Size = new System.Drawing.Size(77, 82);
             this.lb_programmes.TabIndex = 17;
             this.lb_programmes.SelectedIndexChanged += new System.EventHandler(this.lb_programmes_SelectedIndexChanged);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(-1, 335);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(-1, 272);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(97, 17);
+            this.label8.Size = new System.Drawing.Size(73, 13);
             this.label8.TabIndex = 18;
             this.label8.Text = "Departements\r\n";
             // 
             // Btn_Insert
             // 
-            this.Btn_Insert.Location = new System.Drawing.Point(536, 468);
-            this.Btn_Insert.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_Insert.Location = new System.Drawing.Point(402, 380);
             this.Btn_Insert.Name = "Btn_Insert";
-            this.Btn_Insert.Size = new System.Drawing.Size(100, 28);
+            this.Btn_Insert.Size = new System.Drawing.Size(75, 23);
             this.Btn_Insert.TabIndex = 19;
             this.Btn_Insert.Text = "Inserer";
             this.Btn_Insert.UseVisualStyleBackColor = true;
@@ -253,10 +232,9 @@
             // 
             // Btn_liste
             // 
-            this.Btn_liste.Location = new System.Drawing.Point(191, 329);
-            this.Btn_liste.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_liste.Location = new System.Drawing.Point(12, 231);
             this.Btn_liste.Name = "Btn_liste";
-            this.Btn_liste.Size = new System.Drawing.Size(100, 28);
+            this.Btn_liste.Size = new System.Drawing.Size(75, 23);
             this.Btn_liste.TabIndex = 20;
             this.Btn_liste.Text = "Lister";
             this.Btn_liste.UseVisualStyleBackColor = true;
@@ -264,9 +242,9 @@
             // 
             // Tb_CodeDep
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(775, 530);
+            this.ClientSize = new System.Drawing.Size(581, 431);
             this.Controls.Add(this.Btn_liste);
             this.Controls.Add(this.Btn_Insert);
             this.Controls.Add(this.label8);
@@ -288,7 +266,6 @@
             this.Controls.Add(this.Tb_Numemp);
             this.Controls.Add(this.Btn_cancel);
             this.Controls.Add(this.Btn_Conec);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Tb_CodeDep";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Emp)).EndInit();
