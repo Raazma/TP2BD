@@ -66,8 +66,13 @@ namespace TP2BD
              string Commande = "Select NOM,PRENOM,CODEDEP FROM EMPLOYES WHERE CODEDEP =" + "'"+lb_programmes.SelectedItem.ToString()+ "'";
              try
              {
-                 
-                 BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "Employes");
+                 UnBindControls();
+                 DGV_Emp.DataSource = null;
+                 DGV_Emp.Columns.Clear();
+                 lesINFoCoalis.Tables.Clear();
+                 OracleDataAdapter orDataAdaptr = new OracleDataAdapter(Commande, oraconn);
+                 orDataAdaptr.Fill(lesINFoCoalis, "resEmployes");
+                 BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "resEmployes");
 
                  DGV_Emp.DataSource = TheSOUSSE;
              }
@@ -99,28 +104,33 @@ namespace TP2BD
 
         private void fillControl(string table)
         {
-            Tb_Numemp.DataBindings.Add(new Binding("TEXT", lesINFoCoalis.Tables[table], "empno"));
-            Tb_Nom.DataBindings.Add(new Binding("TEXT", lesINFoCoalis.Tables[table], "nom"));
-            Tb_Prenom.DataBindings.Add(new Binding("TEXT", lesINFoCoalis.Tables[table], "PRENOM"));
-            Tb_salaire.DataBindings.Add(new Binding("TEXT", lesINFoCoalis.Tables[table], "salaire"));
-            Tb_Echelon.DataBindings.Add(new Binding("TEXT", lesINFoCoalis.Tables[table], "echelon"));
-            Tb_Adresse.DataBindings.Add(new Binding("TEXT", lesINFoCoalis.Tables[table], "addresse"));
-            TB_Code.DataBindings.Add(new Binding("TEXT", lesINFoCoalis.Tables[table], "CODEDEP"));
+            Tb_Numemp.Enabled = false;
+            Tb_Numemp.DataBindings.Add(new Binding("TEXT", lesINFoCoalis, table+".empno"));
+            Tb_Nom.DataBindings.Add(new Binding("TEXT", lesINFoCoalis, table + ".nom"));
+            Tb_Prenom.DataBindings.Add(new Binding("TEXT", lesINFoCoalis, table + ".PRENOM"));
+            Tb_salaire.DataBindings.Add(new Binding("TEXT", lesINFoCoalis, table + ".salaire"));
+            Tb_Echelon.DataBindings.Add(new Binding("TEXT", lesINFoCoalis, table + ".echelon"));
+            Tb_Adresse.DataBindings.Add(new Binding("TEXT", lesINFoCoalis, table + ".addresse"));
+            TB_Code.DataBindings.Add(new Binding("TEXT", lesINFoCoalis, table + ".CODEDEP"));
 
-            //Tb_Numemp.DataBindings.Clear();
-            //Tb_Nom.DataBindings.Clear();
-            //Tb_Prenom.DataBindings.Clear();
-            //Tb_salaire.DataBindings.Clear();
-            //Tb_Echelon.DataBindings.Clear();
-            //Tb_Adresse.DataBindings.Clear();
-            //TB_Code.DataBindings.Clear();
+        }
+        private void UnBindControls()
+        {
+            Tb_Numemp.Enabled = true;
+            Tb_Numemp.DataBindings.Clear();
+            Tb_Nom.DataBindings.Clear();
+            Tb_Prenom.DataBindings.Clear();
+            Tb_salaire.DataBindings.Clear();
+            Tb_Echelon.DataBindings.Clear();
+            Tb_Adresse.DataBindings.Clear();
+            TB_Code.DataBindings.Clear();
         }
         private void CB_TypeRecherche_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (oraconn.State == ConnectionState.Open)
             {
-               // lesINFoCoalis.Clear();
-               // DGV_Emp.Rows.Clear();
+                UnBindControls();
+                lesINFoCoalis.Tables.Clear();
                 ComboBox Choix = (ComboBox)sender;
                 switch (Choix.SelectedIndex)
                 {
@@ -163,34 +173,34 @@ namespace TP2BD
                 }
             }
         }
-
-
-        private void BT_Recherche_Click(object sender, EventArgs e)
+        private void Recherche()
         {
             if (!string.IsNullOrEmpty(TB_RechercheNom.Text))
             {
+                UnBindControls();
+                lesINFoCoalis.Clear();
                 if (RechercheParNom)
                 {
-                    string Commande = "Select * FROM EMPLOYES where Nom like '"+TB_RechercheNom.Text+"%'";
-                        try
-                        {
+                    string Commande = "Select * FROM EMPLOYES where Nom like '" + TB_RechercheNom.Text + "%'";
+                    try
+                    {
 
-                            OracleDataAdapter orDataAdaptr = new OracleDataAdapter(Commande, oraconn);
-                            orDataAdaptr.Fill(lesINFoCoalis, "resEmployes");
-                            BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "resEmployes");
+                        OracleDataAdapter orDataAdaptr = new OracleDataAdapter(Commande, oraconn);
+                        orDataAdaptr.Fill(lesINFoCoalis, "resEmployes");
+                        BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "resEmployes");
 
-                            DGV_Emp.DataSource = TheSOUSSE;
-                            fillControl("resEmployes");
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message.ToString());
+                        DGV_Emp.DataSource = TheSOUSSE;
+                        fillControl("resEmployes");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message.ToString());
 
-                        }
+                    }
                 }
                 else
                 {
-                    string Commande = "Select EMPLOYES.NOM,EMPLOYES.PRENOM,EMPLOYES.CODEDEP, Departements.NomDepartement FROM EMPLOYES inner join Departements on EMPLOYES.CodeDep=Departements.CodeDep where Departements.NomDepartement like '" + TB_RechercheNom.Text + "%'";
+                    string Commande = "Select EMPLOYES.EMPNO, EMPLOYES.NOM, EMPLOYES.PRENOM, EMPLOYES.SALAIRE, EMPLOYES.ECHELON, EMPLOYES.ADDRESSE, EMPLOYES.CODEDEP, Departements.NomDepartement FROM EMPLOYES inner join Departements on EMPLOYES.CodeDep=Departements.CodeDep where Departements.NomDepartement like '" + TB_RechercheNom.Text + "%'";
                     try
                     {
 
@@ -210,18 +220,23 @@ namespace TP2BD
             }
         }
 
+        private void BT_Recherche_Click(object sender, EventArgs e)
+        {
+            Recherche();
+        }
+
         private void Btn_Update_Click(object sender, EventArgs e)
         {
             try
             {
-                string commande = "UPDATE EMPLOYES SET NOM = '" + Tb_Nom.Text  +
-                         "' , PRENOM = '" + Tb_Prenom.Text    + "'" +
-                         ", SALAIRE = " + Tb_salaire.Text + 
-                         ", ECHELon = " + Tb_Echelon.Text + 
+                string commande = "UPDATE EMPLOYES SET NOM = '" + Tb_Nom.Text +
+                         "' , PRENOM = '" + Tb_Prenom.Text + "'" +
+                         ", SALAIRE = " + Tb_salaire.Text +
+                         ", ECHELON = " + Tb_Echelon.Text +
                         ", ADDRESSE = '" + Tb_Nom.Text + "'" +
                        ",CODEDEP = '" + TB_Code.Text + "' WHERE EMPNO = " + Tb_Numemp.Text;
-                        
-                        
+
+
                 OracleCommand oracleupdate = new OracleCommand(commande, oraconn);
                 oracleupdate.CommandType = CommandType.Text;
                 int nombreligne = oracleupdate.ExecuteNonQuery();
@@ -233,11 +248,42 @@ namespace TP2BD
                 MessageBox.Show(ex.Message.ToString());
 
             }
-
+        }
+        private void BT_Suivant_Click(object sender, EventArgs e)
+        {
+            this.BindingContext[lesINFoCoalis, "resEmployes"].Position += 1;
+            
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Connect();
+            CB_TypeRecherche.SelectedIndex = 0;
+        }
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             oraconn.Close();
             MessageBox.Show(oraconn.State.ToString());
+        }
+
+        private void BT_Precedent_Click(object sender, EventArgs e)
+        {
+            this.BindingContext[lesINFoCoalis, "resEmployes"].Position -= 1;
+        }
+
+        private void TB_RechercheNom_TextChanged(object sender, EventArgs e)
+        {
+            Recherche();
+            TB_RechercheNom.AutoCompleteMode = AutoCompleteMode.Suggest;
+            if (RechercheParNom)
+            {
+                for (int i = 0; i < lesINFoCoalis.Tables[lesINFoCoalis.Tables.IndexOf("resEmployes")].Rows.Count; i++)
+			{
+			 TB_RechercheNom.AutoCompleteCustomSource.Add(lesINFoCoalis.Tables[lesINFoCoalis.Tables.IndexOf("resEmployes")].Rows[i]["nom"].ToString());
+			}
+                TB_RechercheNom.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                
+                //Reste a faire la partie du departement
+            }
         }
     }
 }
