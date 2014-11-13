@@ -71,26 +71,6 @@ namespace TP2BD
             //OracleDataReader oracleread = oracleupdate.ExecuteReader();
         }
 
-        private void Btn_liste_Click(object sender, EventArgs e)
-        {
-            string Commande = "Select NOM,PRENOM,CODEDEP FROM EMPLOYES";
-            try{
-                OracleDataAdapter Data = new OracleDataAdapter(Commande , oraconn);
-                DataSet lesINFoCoalis = new DataSet();        
-                Data.Fill(lesINFoCoalis, "Employes");
-                Data.Dispose();
-                BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "Employes");
-
-                DGV_Emp.DataSource = TheSOUSSE;
-              
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-               
-            }
-        }
-
         private void lb_programmes_SelectedIndexChanged(object sender, EventArgs e)
         {
              string Commande = "Select NOM,PRENOM,CODEDEP FROM EMPLOYES WHERE CODEDEP =" + "'"+lb_programmes.SelectedItem.ToString()+ "'";
@@ -208,6 +188,11 @@ namespace TP2BD
                     }
                 }
             }
+        }
+
+        private void Btn_Update_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

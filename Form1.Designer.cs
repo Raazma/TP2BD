@@ -47,15 +47,17 @@
             this.DGV_Emp = new System.Windows.Forms.DataGridView();
             this.lb_programmes = new System.Windows.Forms.ListBox();
             this.Btn_Insert = new System.Windows.Forms.Button();
-            this.Btn_liste = new System.Windows.Forms.Button();
+            this.Btn_Update = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.CB_TypeRecherche = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.TB_RechercheNom = new System.Windows.Forms.TextBox();
-            this.LB_RechercheNom = new System.Windows.Forms.Label();
             this.BT_Recherche = new System.Windows.Forms.Button();
+            this.LB_RechercheNom = new System.Windows.Forms.Label();
+            this.TB_RechercheNom = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.CB_TypeRecherche = new System.Windows.Forms.ComboBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.BT_Suivant = new System.Windows.Forms.Button();
+            this.BT_Precedent = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Emp)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -64,8 +66,8 @@
             // 
             // Btn_Conec
             // 
-            this.Btn_Conec.Location = new System.Drawing.Point(818, 399);
-            this.Btn_Conec.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_Conec.Location = new System.Drawing.Point(832, 474);
+            this.Btn_Conec.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Conec.Name = "Btn_Conec";
             this.Btn_Conec.Size = new System.Drawing.Size(127, 31);
             this.Btn_Conec.TabIndex = 0;
@@ -75,8 +77,8 @@
             // 
             // Btn_cancel
             // 
-            this.Btn_cancel.Location = new System.Drawing.Point(818, 448);
-            this.Btn_cancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_cancel.Location = new System.Drawing.Point(987, 475);
+            this.Btn_cancel.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_cancel.Name = "Btn_cancel";
             this.Btn_cancel.Size = new System.Drawing.Size(127, 28);
             this.Btn_cancel.TabIndex = 1;
@@ -87,7 +89,7 @@
             // Tb_Numemp
             // 
             this.Tb_Numemp.Location = new System.Drawing.Point(127, 25);
-            this.Tb_Numemp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Tb_Numemp.Margin = new System.Windows.Forms.Padding(4);
             this.Tb_Numemp.Name = "Tb_Numemp";
             this.Tb_Numemp.Size = new System.Drawing.Size(132, 22);
             this.Tb_Numemp.TabIndex = 2;
@@ -95,7 +97,7 @@
             // Tn_Nom
             // 
             this.Tn_Nom.Location = new System.Drawing.Point(127, 65);
-            this.Tn_Nom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Tn_Nom.Margin = new System.Windows.Forms.Padding(4);
             this.Tn_Nom.Name = "Tn_Nom";
             this.Tn_Nom.Size = new System.Drawing.Size(132, 22);
             this.Tn_Nom.TabIndex = 3;
@@ -103,7 +105,7 @@
             // Tb_Prenom
             // 
             this.Tb_Prenom.Location = new System.Drawing.Point(127, 108);
-            this.Tb_Prenom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Tb_Prenom.Margin = new System.Windows.Forms.Padding(4);
             this.Tb_Prenom.Name = "Tb_Prenom";
             this.Tb_Prenom.Size = new System.Drawing.Size(132, 22);
             this.Tb_Prenom.TabIndex = 4;
@@ -111,7 +113,7 @@
             // Tb_salaire
             // 
             this.Tb_salaire.Location = new System.Drawing.Point(127, 153);
-            this.Tb_salaire.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Tb_salaire.Margin = new System.Windows.Forms.Padding(4);
             this.Tb_salaire.Name = "Tb_salaire";
             this.Tb_salaire.Size = new System.Drawing.Size(132, 22);
             this.Tb_salaire.TabIndex = 5;
@@ -119,7 +121,7 @@
             // Tb_Echelon
             // 
             this.Tb_Echelon.Location = new System.Drawing.Point(127, 199);
-            this.Tb_Echelon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Tb_Echelon.Margin = new System.Windows.Forms.Padding(4);
             this.Tb_Echelon.Name = "Tb_Echelon";
             this.Tb_Echelon.Size = new System.Drawing.Size(132, 22);
             this.Tb_Echelon.TabIndex = 6;
@@ -127,7 +129,7 @@
             // Tb_Adresse
             // 
             this.Tb_Adresse.Location = new System.Drawing.Point(127, 242);
-            this.Tb_Adresse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Tb_Adresse.Margin = new System.Windows.Forms.Padding(4);
             this.Tb_Adresse.Name = "Tb_Adresse";
             this.Tb_Adresse.Size = new System.Drawing.Size(132, 22);
             this.Tb_Adresse.TabIndex = 7;
@@ -205,7 +207,7 @@
             // TB_Code
             // 
             this.TB_Code.Location = new System.Drawing.Point(127, 288);
-            this.TB_Code.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TB_Code.Margin = new System.Windows.Forms.Padding(4);
             this.TB_Code.Name = "TB_Code";
             this.TB_Code.Size = new System.Drawing.Size(132, 22);
             this.TB_Code.TabIndex = 15;
@@ -216,7 +218,7 @@
             this.DGV_Emp.AllowUserToDeleteRows = false;
             this.DGV_Emp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGV_Emp.Location = new System.Drawing.Point(279, 22);
-            this.DGV_Emp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DGV_Emp.Margin = new System.Windows.Forms.Padding(4);
             this.DGV_Emp.Name = "DGV_Emp";
             this.DGV_Emp.ReadOnly = true;
             this.DGV_Emp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -234,7 +236,7 @@
             "MTN",
             "TCN"});
             this.lb_programmes.Location = new System.Drawing.Point(79, 22);
-            this.lb_programmes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lb_programmes.Margin = new System.Windows.Forms.Padding(4);
             this.lb_programmes.Name = "lb_programmes";
             this.lb_programmes.Size = new System.Drawing.Size(101, 100);
             this.lb_programmes.TabIndex = 17;
@@ -242,8 +244,8 @@
             // 
             // Btn_Insert
             // 
-            this.Btn_Insert.Location = new System.Drawing.Point(98, 329);
-            this.Btn_Insert.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_Insert.Location = new System.Drawing.Point(30, 329);
+            this.Btn_Insert.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Insert.Name = "Btn_Insert";
             this.Btn_Insert.Size = new System.Drawing.Size(100, 28);
             this.Btn_Insert.TabIndex = 19;
@@ -251,16 +253,16 @@
             this.Btn_Insert.UseVisualStyleBackColor = true;
             this.Btn_Insert.Click += new System.EventHandler(this.Btn_Insert_Click);
             // 
-            // Btn_liste
+            // Btn_Update
             // 
-            this.Btn_liste.Location = new System.Drawing.Point(77, 475);
-            this.Btn_liste.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Btn_liste.Name = "Btn_liste";
-            this.Btn_liste.Size = new System.Drawing.Size(100, 28);
-            this.Btn_liste.TabIndex = 20;
-            this.Btn_liste.Text = "Lister";
-            this.Btn_liste.UseVisualStyleBackColor = true;
-            this.Btn_liste.Click += new System.EventHandler(this.Btn_liste_Click);
+            this.Btn_Update.Location = new System.Drawing.Point(175, 329);
+            this.Btn_Update.Margin = new System.Windows.Forms.Padding(4);
+            this.Btn_Update.Name = "Btn_Update";
+            this.Btn_Update.Size = new System.Drawing.Size(100, 28);
+            this.Btn_Update.TabIndex = 20;
+            this.Btn_Update.Text = "Update";
+            this.Btn_Update.UseVisualStyleBackColor = true;
+            this.Btn_Update.Click += new System.EventHandler(this.Btn_Update_Click);
             // 
             // groupBox1
             // 
@@ -269,6 +271,7 @@
             this.groupBox1.Controls.Add(this.Btn_Insert);
             this.groupBox1.Controls.Add(this.Tb_Prenom);
             this.groupBox1.Controls.Add(this.Tb_salaire);
+            this.groupBox1.Controls.Add(this.Btn_Update);
             this.groupBox1.Controls.Add(this.Tb_Echelon);
             this.groupBox1.Controls.Add(this.Tb_Adresse);
             this.groupBox1.Controls.Add(this.TB_Code);
@@ -300,15 +303,43 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Recherche";
             // 
-            // groupBox3
+            // BT_Recherche
             // 
-            this.groupBox3.Controls.Add(this.lb_programmes);
-            this.groupBox3.Location = new System.Drawing.Point(12, 211);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(260, 130);
-            this.groupBox3.TabIndex = 23;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Departement";
+            this.BT_Recherche.Location = new System.Drawing.Point(79, 122);
+            this.BT_Recherche.Name = "BT_Recherche";
+            this.BT_Recherche.Size = new System.Drawing.Size(101, 23);
+            this.BT_Recherche.TabIndex = 5;
+            this.BT_Recherche.Text = "Rechercher";
+            this.BT_Recherche.UseVisualStyleBackColor = true;
+            this.BT_Recherche.Visible = false;
+            this.BT_Recherche.Click += new System.EventHandler(this.BT_Recherche_Click);
+            // 
+            // LB_RechercheNom
+            // 
+            this.LB_RechercheNom.AutoSize = true;
+            this.LB_RechercheNom.Location = new System.Drawing.Point(76, 66);
+            this.LB_RechercheNom.Name = "LB_RechercheNom";
+            this.LB_RechercheNom.Size = new System.Drawing.Size(41, 17);
+            this.LB_RechercheNom.TabIndex = 4;
+            this.LB_RechercheNom.Text = "Nom:";
+            this.LB_RechercheNom.Visible = false;
+            // 
+            // TB_RechercheNom
+            // 
+            this.TB_RechercheNom.Location = new System.Drawing.Point(123, 63);
+            this.TB_RechercheNom.Name = "TB_RechercheNom";
+            this.TB_RechercheNom.Size = new System.Drawing.Size(131, 22);
+            this.TB_RechercheNom.TabIndex = 3;
+            this.TB_RechercheNom.Visible = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 25);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(38, 17);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Par :";
             // 
             // CB_TypeRecherche
             // 
@@ -324,57 +355,50 @@
             this.CB_TypeRecherche.TabIndex = 0;
             this.CB_TypeRecherche.SelectedIndexChanged += new System.EventHandler(this.CB_TypeRecherche_SelectedIndexChanged);
             // 
-            // label8
+            // groupBox3
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 25);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(38, 17);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Par :";
+            this.groupBox3.Controls.Add(this.lb_programmes);
+            this.groupBox3.Location = new System.Drawing.Point(12, 211);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(260, 130);
+            this.groupBox3.TabIndex = 23;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Departement";
             // 
-            // TB_RechercheNom
+            // BT_Suivant
             // 
-            this.TB_RechercheNom.Location = new System.Drawing.Point(123, 63);
-            this.TB_RechercheNom.Name = "TB_RechercheNom";
-            this.TB_RechercheNom.Size = new System.Drawing.Size(131, 22);
-            this.TB_RechercheNom.TabIndex = 3;
-            this.TB_RechercheNom.Visible = false;
+            this.BT_Suivant.Location = new System.Drawing.Point(987, 393);
+            this.BT_Suivant.Margin = new System.Windows.Forms.Padding(4);
+            this.BT_Suivant.Name = "BT_Suivant";
+            this.BT_Suivant.Size = new System.Drawing.Size(127, 28);
+            this.BT_Suivant.TabIndex = 25;
+            this.BT_Suivant.Text = "Suivant";
+            this.BT_Suivant.UseVisualStyleBackColor = true;
             // 
-            // LB_RechercheNom
+            // BT_Precedent
             // 
-            this.LB_RechercheNom.AutoSize = true;
-            this.LB_RechercheNom.Location = new System.Drawing.Point(76, 66);
-            this.LB_RechercheNom.Name = "LB_RechercheNom";
-            this.LB_RechercheNom.Size = new System.Drawing.Size(41, 17);
-            this.LB_RechercheNom.TabIndex = 4;
-            this.LB_RechercheNom.Text = "Nom:";
-            this.LB_RechercheNom.Visible = false;
-            // 
-            // BT_Recherche
-            // 
-            this.BT_Recherche.Location = new System.Drawing.Point(79, 122);
-            this.BT_Recherche.Name = "BT_Recherche";
-            this.BT_Recherche.Size = new System.Drawing.Size(101, 23);
-            this.BT_Recherche.TabIndex = 5;
-            this.BT_Recherche.Text = "Rechercher";
-            this.BT_Recherche.UseVisualStyleBackColor = true;
-            this.BT_Recherche.Visible = false;
-            this.BT_Recherche.Click += new System.EventHandler(this.BT_Recherche_Click);
+            this.BT_Precedent.Location = new System.Drawing.Point(832, 393);
+            this.BT_Precedent.Margin = new System.Windows.Forms.Padding(4);
+            this.BT_Precedent.Name = "BT_Precedent";
+            this.BT_Precedent.Size = new System.Drawing.Size(127, 28);
+            this.BT_Precedent.TabIndex = 24;
+            this.BT_Precedent.Text = "Précédent";
+            this.BT_Precedent.UseVisualStyleBackColor = true;
             // 
             // Tb_CodeDep
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1126, 527);
+            this.Controls.Add(this.BT_Suivant);
+            this.Controls.Add(this.BT_Precedent);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.Btn_liste);
             this.Controls.Add(this.DGV_Emp);
             this.Controls.Add(this.Btn_cancel);
             this.Controls.Add(this.Btn_Conec);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Tb_CodeDep";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Tb_CodeDep_Load);
@@ -409,7 +433,7 @@
         private System.Windows.Forms.DataGridView DGV_Emp;
         private System.Windows.Forms.ListBox lb_programmes;
         private System.Windows.Forms.Button Btn_Insert;
-        private System.Windows.Forms.Button Btn_liste;
+        private System.Windows.Forms.Button Btn_Update;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox CB_TypeRecherche;
@@ -418,6 +442,8 @@
         private System.Windows.Forms.Button BT_Recherche;
         private System.Windows.Forms.Label LB_RechercheNom;
         private System.Windows.Forms.TextBox TB_RechercheNom;
+        private System.Windows.Forms.Button BT_Suivant;
+        private System.Windows.Forms.Button BT_Precedent;
     }
 }
 
