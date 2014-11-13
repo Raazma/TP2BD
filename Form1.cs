@@ -52,7 +52,7 @@ namespace TP2BD
 
         private void Btn_Insert_Click(object sender, EventArgs e)
         {
-            string Commande = "INSERT INTO EMPLOYES VALUES (" + Tb_Numemp.Text + ",'" + Tb_Prenom.Text + "', '" + Tn_Nom.Text + "'," +
+            string Commande = "INSERT INTO EMPLOYES VALUES (" + Tb_Numemp.Text + ",'" + Tb_Prenom.Text + "', '" + Tb_Nom.Text + "'," +
                                       Tb_salaire.Text + "," + Tb_Echelon.Text + ",'" + Tb_Adresse.Text + "', '" + TB_Code.Text + "')";
             try 
      	   {	        
@@ -192,7 +192,28 @@ namespace TP2BD
 
         private void Btn_Update_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string commande = "UPDATE EMPLOYES SET NOM = '" + Tb_Nom.Text  +
+                         "' , PRENOM = '" + Tb_Prenom.Text    + "'" +
+                         ", SALAIRE = " + Tb_salaire.Text + 
+                         ", ECHELon = " + Tb_Echelon.Text + 
+                        ", ADDRESSE = '" + Tb_Nom.Text + "'" +
+                       ",CODEDEP = '" + TB_Code.Text + "' WHERE EMPNO = " + Tb_Numemp.Text;
+                        
+                        
+                OracleCommand oracleupdate = new OracleCommand(commande, oraconn);
+                oracleupdate.CommandType = CommandType.Text;
+                int nombreligne = oracleupdate.ExecuteNonQuery();
+                MessageBox.Show(nombreligne.ToString());
+            }
 
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+
+            }
+                     
         }
     }
 }
