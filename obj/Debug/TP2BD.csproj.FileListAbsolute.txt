@@ -15,6 +15,6 @@ C:\Users\Francis\Documents\Base de donnée\TP2BD\bin\Debug\TP2BD.exe
 C:\Users\Francis\Documents\Base de donnée\TP2BD\bin\Debug\TP2BD.pdb
 C:\Users\Francis\Documents\Base de donnée\TP2BD\bin\Debug\Oracle.DataAccess.dll
 C:\Users\Francis\Documents\Base de donnée\TP2BD\obj\Debug\TP2BD.csprojResolveAssemblyReference.cache
-C:\Users\Francis\Documents\Base de donnée\TP2BD\obj\Debug\TP2BD.Tb_CodeDep.resources
 C:\Users\Francis\Documents\Base de donnée\TP2BD\obj\Debug\TP2BD.Properties.Resources.resources
 C:\Users\Francis\Documents\Base de donnée\TP2BD\obj\Debug\TP2BD.csproj.GenerateResource.Cache
+C:\Users\Francis\Documents\Base de donnée\TP2BD\obj\Debug\TP2BD.Form1.resources

@@ -14,33 +14,23 @@ namespace TP2BD
 
   
 
-    public partial class Tb_CodeDep : Form
+    public partial class Form1 : Form
 
     {
         public OracleConnection oraconn = new OracleConnection();
-        public Tb_CodeDep()
+        DataSet lesINFoCoalis = new DataSet();
+        public Form1()
         {
             InitializeComponent();
         }
 
         private bool RechercheParNom;
+
+                            
+                            
         private void Btn_Conec_Click(object sender, EventArgs e)
         {
-            string Dsource = "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)" +
-             "(HOST=205.237.244.251)(PORT=1521)))" + "(CONNECT_DATA=(SERVICE_NAME=ORCL.clg.qc.ca)))";
-          
-            string chainedeconnexion = "DATA SOURCE =" + Dsource + ";USER ID =  PAQUETTE;PASSWORD = ORACLE1";
-            try
-            {
-                oraconn.ConnectionString = chainedeconnexion;
-                oraconn.Open();
-                MessageBox.Show(oraconn.State.ToString());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-
-            }
+           
         }
 
         private void Btn_cancel_Click(object sender, EventArgs e)
@@ -52,7 +42,7 @@ namespace TP2BD
 
         private void Btn_Insert_Click(object sender, EventArgs e)
         {
-            string Commande = "INSERT INTO EMPLOYES VALUES (" + Tb_Numemp.Text + ",'" + Tb_Prenom.Text + "', '" + Tn_Nom.Text + "'," +
+            string Commande = "INSERT INTO EMPLOYES VALUES (" + Tb_Numemp.Text + ",'" + Tb_Prenom.Text + "', '" + Tb_Nom.Text + "'," +
                                       Tb_salaire.Text + "," + Tb_Echelon.Text + ",'" + Tb_Adresse.Text + "', '" + TB_Code.Text + "')";
             try 
      	   {	        
@@ -76,10 +66,7 @@ namespace TP2BD
              string Commande = "Select NOM,PRENOM,CODEDEP FROM EMPLOYES WHERE CODEDEP =" + "'"+lb_programmes.SelectedItem.ToString()+ "'";
              try
              {
-                 OracleDataAdapter Data = new OracleDataAdapter(Commande, oraconn);
-                 DataSet lesINFoCoalis = new DataSet();
-                 Data.Fill(lesINFoCoalis, "Employes");
-                 Data.Dispose();
+                 
                  BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "Employes");
 
                  DGV_Emp.DataSource = TheSOUSSE;
@@ -91,15 +78,49 @@ namespace TP2BD
              }
         }
 
-        private void Tb_CodeDep_Load(object sender, EventArgs e)
+        private void Connect()
         {
-            CB_TypeRecherche.SelectedIndex = 0;
+            string Dsource = "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)" +
+            "(HOST=205.237.244.251)(PORT=1521)))" + "(CONNECT_DATA=(SERVICE_NAME=ORCL.clg.qc.ca)))";
+
+            string chainedeconnexion = "DATA SOURCE =" + Dsource + ";USER ID =  PAQUETTE;PASSWORD = ORACLE1";
+            try
+            {
+                oraconn.ConnectionString = chainedeconnexion;
+                oraconn.Open();
+                MessageBox.Show(oraconn.State.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+
+            }
         }
 
+        private void fillControl(string table)
+        {
+            Tb_Numemp.DataBindings.Add(new Binding("TEXT", lesINFoCoalis.Tables[table], "empno"));
+            Tb_Nom.DataBindings.Add(new Binding("TEXT", lesINFoCoalis.Tables[table], "nom"));
+            Tb_Prenom.DataBindings.Add(new Binding("TEXT", lesINFoCoalis.Tables[table], "PRENOM"));
+            Tb_salaire.DataBindings.Add(new Binding("TEXT", lesINFoCoalis.Tables[table], "salaire"));
+            Tb_Echelon.DataBindings.Add(new Binding("TEXT", lesINFoCoalis.Tables[table], "echelon"));
+            Tb_Adresse.DataBindings.Add(new Binding("TEXT", lesINFoCoalis.Tables[table], "addresse"));
+            TB_Code.DataBindings.Add(new Binding("TEXT", lesINFoCoalis.Tables[table], "CODEDEP"));
+
+            //Tb_Numemp.DataBindings.Clear();
+            //Tb_Nom.DataBindings.Clear();
+            //Tb_Prenom.DataBindings.Clear();
+            //Tb_salaire.DataBindings.Clear();
+            //Tb_Echelon.DataBindings.Clear();
+            //Tb_Adresse.DataBindings.Clear();
+            //TB_Code.DataBindings.Clear();
+        }
         private void CB_TypeRecherche_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (oraconn.State == ConnectionState.Open)
             {
+               // lesINFoCoalis.Clear();
+               // DGV_Emp.Rows.Clear();
                 ComboBox Choix = (ComboBox)sender;
                 switch (Choix.SelectedIndex)
                 {
@@ -121,16 +142,16 @@ namespace TP2BD
                         TB_RechercheNom.Visible = false;
                         LB_RechercheNom.Visible = false;
                         BT_Recherche.Visible = false;
-                        string Commande = "Select NOM,PRENOM,CODEDEP FROM EMPLOYES";
+                        string Commande = "Select * FROM EMPLOYES";
                         try
                         {
-                            OracleDataAdapter Data = new OracleDataAdapter(Commande, oraconn);
-                            DataSet lesINFoCoalis = new DataSet();
-                            Data.Fill(lesINFoCoalis, "Employes");
-                            Data.Dispose();
-                            BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "Employes");
+                            OracleDataAdapter orDataAdaptr = new OracleDataAdapter(Commande, oraconn);
+                            orDataAdaptr.Fill(lesINFoCoalis, "resEmployes");
+                            BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "resEmployes");
 
                             DGV_Emp.DataSource = TheSOUSSE;
+                            
+                            fillControl("resEmployes");
 
                         }
                         catch (Exception ex)
@@ -143,23 +164,23 @@ namespace TP2BD
             }
         }
 
+
         private void BT_Recherche_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(TB_RechercheNom.Text))
             {
                 if (RechercheParNom)
                 {
-                    string Commande = "Select NOM,PRENOM,CODEDEP FROM EMPLOYES where Nom like '"+TB_RechercheNom.Text+"%'";
+                    string Commande = "Select * FROM EMPLOYES where Nom like '"+TB_RechercheNom.Text+"%'";
                         try
                         {
-                            OracleDataAdapter Data = new OracleDataAdapter(Commande, oraconn);
-                            DataSet lesINFoCoalis = new DataSet();
-                            Data.Fill(lesINFoCoalis, "Employes");
-                            Data.Dispose();
-                            BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "Employes");
+
+                            OracleDataAdapter orDataAdaptr = new OracleDataAdapter(Commande, oraconn);
+                            orDataAdaptr.Fill(lesINFoCoalis, "resEmployes");
+                            BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "resEmployes");
 
                             DGV_Emp.DataSource = TheSOUSSE;
-
+                            fillControl("resEmployes");
                         }
                         catch (Exception ex)
                         {
@@ -172,14 +193,13 @@ namespace TP2BD
                     string Commande = "Select EMPLOYES.NOM,EMPLOYES.PRENOM,EMPLOYES.CODEDEP, Departements.NomDepartement FROM EMPLOYES inner join Departements on EMPLOYES.CodeDep=Departements.CodeDep where Departements.NomDepartement like '" + TB_RechercheNom.Text + "%'";
                     try
                     {
-                        OracleDataAdapter Data = new OracleDataAdapter(Commande, oraconn);
-                        DataSet lesINFoCoalis = new DataSet();
-                        Data.Fill(lesINFoCoalis, "Employes");
-                        Data.Dispose();
-                        BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "Employes");
+
+                        OracleDataAdapter orDataAdaptr = new OracleDataAdapter(Commande, oraconn);
+                        orDataAdaptr.Fill(lesINFoCoalis, "resEmployes");
+                        BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "resEmployes");
 
                         DGV_Emp.DataSource = TheSOUSSE;
-
+                        fillControl("resEmployes");
                     }
                     catch (Exception ex)
                     {
@@ -192,7 +212,26 @@ namespace TP2BD
 
         private void Btn_Update_Click(object sender, EventArgs e)
         {
+            this.BindingContext[lesINFoCoalis,"resEmployes"].Position -= 1;
+            //fillControl("resEmployes");
+        }
 
+        private void BT_Suivant_Click(object sender, EventArgs e)
+        {
+            this.BindingContext[lesINFoCoalis,"resEmployes"].Position += 1;
+            //fillControl("resEmployes");
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Connect();
+            CB_TypeRecherche.SelectedIndex = 0;  
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            oraconn.Close();
+            MessageBox.Show(oraconn.State.ToString());
         }
     }
 }

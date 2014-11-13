@@ -1,6 +1,6 @@
 ﻿namespace TP2BD
 {
-    partial class Tb_CodeDep
+    partial class Form1
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -31,7 +31,7 @@
             this.Btn_Conec = new System.Windows.Forms.Button();
             this.Btn_cancel = new System.Windows.Forms.Button();
             this.Tb_Numemp = new System.Windows.Forms.TextBox();
-            this.Tn_Nom = new System.Windows.Forms.TextBox();
+            this.Tb_Nom = new System.Windows.Forms.TextBox();
             this.Tb_Prenom = new System.Windows.Forms.TextBox();
             this.Tb_salaire = new System.Windows.Forms.TextBox();
             this.Tb_Echelon = new System.Windows.Forms.TextBox();
@@ -94,13 +94,13 @@
             this.Tb_Numemp.Size = new System.Drawing.Size(132, 22);
             this.Tb_Numemp.TabIndex = 2;
             // 
-            // Tn_Nom
+            // Tb_Nom
             // 
-            this.Tn_Nom.Location = new System.Drawing.Point(127, 65);
-            this.Tn_Nom.Margin = new System.Windows.Forms.Padding(4);
-            this.Tn_Nom.Name = "Tn_Nom";
-            this.Tn_Nom.Size = new System.Drawing.Size(132, 22);
-            this.Tn_Nom.TabIndex = 3;
+            this.Tb_Nom.Location = new System.Drawing.Point(127, 65);
+            this.Tb_Nom.Margin = new System.Windows.Forms.Padding(4);
+            this.Tb_Nom.Name = "Tb_Nom";
+            this.Tb_Nom.Size = new System.Drawing.Size(132, 22);
+            this.Tb_Nom.TabIndex = 3;
             // 
             // Tb_Prenom
             // 
@@ -267,7 +267,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.Tb_Numemp);
-            this.groupBox1.Controls.Add(this.Tn_Nom);
+            this.groupBox1.Controls.Add(this.Tb_Nom);
             this.groupBox1.Controls.Add(this.Btn_Insert);
             this.groupBox1.Controls.Add(this.Tb_Prenom);
             this.groupBox1.Controls.Add(this.Tb_salaire);
@@ -374,6 +374,7 @@
             this.BT_Suivant.TabIndex = 25;
             this.BT_Suivant.Text = "Suivant";
             this.BT_Suivant.UseVisualStyleBackColor = true;
+            this.BT_Suivant.Click += new System.EventHandler(this.BT_Suivant_Click);
             // 
             // BT_Precedent
             // 
@@ -385,7 +386,7 @@
             this.BT_Precedent.Text = "Précédent";
             this.BT_Precedent.UseVisualStyleBackColor = true;
             // 
-            // Tb_CodeDep
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -399,9 +400,10 @@
             this.Controls.Add(this.Btn_cancel);
             this.Controls.Add(this.Btn_Conec);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Tb_CodeDep";
+            this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Tb_CodeDep_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Emp)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -417,7 +419,7 @@
         private System.Windows.Forms.Button Btn_Conec;
         private System.Windows.Forms.Button Btn_cancel;
         private System.Windows.Forms.TextBox Tb_Numemp;
-        private System.Windows.Forms.TextBox Tn_Nom;
+        private System.Windows.Forms.TextBox Tb_Nom;
         private System.Windows.Forms.TextBox Tb_Prenom;
         private System.Windows.Forms.TextBox Tb_salaire;
         private System.Windows.Forms.TextBox Tb_Echelon;
