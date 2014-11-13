@@ -30,8 +30,8 @@ namespace TP2BD
                             
         private void Btn_Conec_Click(object sender, EventArgs e)
         {
-           
-        }
+          
+            }
 
         private void Btn_cancel_Click(object sender, EventArgs e)
         {
@@ -89,7 +89,7 @@ namespace TP2BD
                 oraconn.ConnectionString = chainedeconnexion;
                 oraconn.Open();
                 MessageBox.Show(oraconn.State.ToString());
-            }
+        }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
@@ -150,7 +150,7 @@ namespace TP2BD
                             BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "resEmployes");
 
                             DGV_Emp.DataSource = TheSOUSSE;
-                            
+
                             fillControl("resEmployes");
 
                         }
@@ -212,21 +212,27 @@ namespace TP2BD
 
         private void Btn_Update_Click(object sender, EventArgs e)
         {
-            this.BindingContext[lesINFoCoalis,"resEmployes"].Position -= 1;
-            //fillControl("resEmployes");
-        }
+            try
+            {
+                string commande = "UPDATE EMPLOYES SET NOM = '" + Tb_Nom.Text  +
+                         "' , PRENOM = '" + Tb_Prenom.Text    + "'" +
+                         ", SALAIRE = " + Tb_salaire.Text + 
+                         ", ECHELon = " + Tb_Echelon.Text + 
+                        ", ADDRESSE = '" + Tb_Nom.Text + "'" +
+                       ",CODEDEP = '" + TB_Code.Text + "' WHERE EMPNO = " + Tb_Numemp.Text;
+                        
+                        
+                OracleCommand oracleupdate = new OracleCommand(commande, oraconn);
+                oracleupdate.CommandType = CommandType.Text;
+                int nombreligne = oracleupdate.ExecuteNonQuery();
+                MessageBox.Show(nombreligne.ToString());
+            }
 
-        private void BT_Suivant_Click(object sender, EventArgs e)
-        {
-            this.BindingContext[lesINFoCoalis,"resEmployes"].Position += 1;
-            //fillControl("resEmployes");
-        }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            Connect();
-            CB_TypeRecherche.SelectedIndex = 0;  
-        }
+            }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
