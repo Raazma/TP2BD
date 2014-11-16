@@ -16,7 +16,7 @@ namespace TP2BD
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Tb_CodeDep());
+            Application.Run(new Form1());
         }
     }
 }
