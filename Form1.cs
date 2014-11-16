@@ -19,6 +19,7 @@ namespace TP2BD
     {
         public OracleConnection oraconn = new OracleConnection();
         DataSet lesINFoCoalis = new DataSet();
+        
         public Form1()
         {
             InitializeComponent();
@@ -31,7 +32,7 @@ namespace TP2BD
         private void Btn_Conec_Click(object sender, EventArgs e)
         {
           
-            }
+        }
 
         private void Btn_cancel_Click(object sender, EventArgs e)
         {
@@ -124,13 +125,22 @@ namespace TP2BD
             Tb_Echelon.DataBindings.Clear();
             Tb_Adresse.DataBindings.Clear();
             TB_Code.DataBindings.Clear();
+            Tb_Adresse.Clear();
+            TB_Code.Clear();
+            Tb_Echelon.Clear();
+            Tb_Nom.Clear();
+            Tb_Prenom.Clear();
+            Tb_Numemp.Clear();
+            Tb_salaire.Clear();
+            
         }
         private void CB_TypeRecherche_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (oraconn.State == ConnectionState.Open)
             {
                 UnBindControls();
-                lesINFoCoalis.Tables.Clear();
+                  lesINFoCoalis.Tables.Clear();
+
                 ComboBox Choix = (ComboBox)sender;
                 switch (Choix.SelectedIndex)
                 {
@@ -157,6 +167,7 @@ namespace TP2BD
                         {
                             OracleDataAdapter orDataAdaptr = new OracleDataAdapter(Commande, oraconn);
                             orDataAdaptr.Fill(lesINFoCoalis, "resEmployes");
+                         
                             BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "resEmployes");
 
                             DGV_Emp.DataSource = TheSOUSSE;
@@ -179,18 +190,21 @@ namespace TP2BD
             {
                 UnBindControls();
                 lesINFoCoalis.Clear();
+
                 if (RechercheParNom)
                 {
                     string Commande = "Select * FROM EMPLOYES where Nom like '" + TB_RechercheNom.Text + "%'";
                     try
                     {
-
+                        UnBindControls();
+                        lesINFoCoalis.Clear();
                         OracleDataAdapter orDataAdaptr = new OracleDataAdapter(Commande, oraconn);
                         orDataAdaptr.Fill(lesINFoCoalis, "resEmployes");
                         BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "resEmployes");
 
                         DGV_Emp.DataSource = TheSOUSSE;
                         fillControl("resEmployes");
+
                     }
                     catch (Exception ex)
                     {
@@ -285,5 +299,46 @@ namespace TP2BD
                 //Reste a faire la partie du departement
             }
         }
+
+        private void Btn_Delete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string commande = "DELETE FROM EMPLOYES  WHERE EMPNO = " + Tb_Numemp.Text;
+
+                OracleCommand oracleupdate = new OracleCommand(commande, oraconn);
+                oracleupdate.CommandType = CommandType.Text;
+                int nombreligne = oracleupdate.ExecuteNonQuery();
+                MessageBox.Show(nombreligne.ToString());
+                
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+
+            }
+        }
+
+        private void DGV_Emp_SelectionChanged(object sender, EventArgs e)
+        {
+           //met a jour les textbox avec les info selectioner dans le datagridview
+            this.BindingContext[lesINFoCoalis, "resEmployes"].Position = DGV_Emp.CurrentCell.RowIndex;
+        }
+
+        private void Btn_clear_Click(object sender, EventArgs e)
+        {
+            Tb_Numemp.Enabled = true;
+            Tb_Adresse.Clear();
+            TB_Code.Clear();
+            Tb_Echelon.Clear();
+            Tb_Nom.Clear();
+            Tb_Prenom.Clear();
+            Tb_Numemp.Clear();
+            Tb_salaire.Clear();
+            
+        }
+      
+       
     }
 }
