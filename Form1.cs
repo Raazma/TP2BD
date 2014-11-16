@@ -64,7 +64,7 @@ namespace TP2BD
 
         private void lb_programmes_SelectedIndexChanged(object sender, EventArgs e)
         {
-             string Commande = "Select NOM,PRENOM,CODEDEP FROM EMPLOYES WHERE CODEDEP =" + "'"+lb_programmes.SelectedItem.ToString()+ "'";
+            string Commande = "Select NOM,PRENOM,CODEDEP FROM EMPLOYES  WHERE EMPLOYES.CODEDEP = (SELECT CODEDEP FROM DEPARTEMENTS WHERE NOMDEPARTEMENT = "+ "'" + lb_programmes.SelectedItem.ToString() + "')";
              try
              {
                  UnBindControls();

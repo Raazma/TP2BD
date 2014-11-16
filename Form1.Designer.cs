@@ -194,14 +194,14 @@
             // 
             this.lb_programmes.FormattingEnabled = true;
             this.lb_programmes.Items.AddRange(new object[] {
-            "CTP",
-            "RSH",
-            "SCT",
-            "MTN",
-            "TCN"});
-            this.lb_programmes.Location = new System.Drawing.Point(59, 18);
+            "CONTABILITE",
+            "RESSOURCE HUMAINE",
+            "SECURITE",
+            "MAINTENANCE",
+            "TECHNICIEN"});
+            this.lb_programmes.Location = new System.Drawing.Point(7, 18);
             this.lb_programmes.Name = "lb_programmes";
-            this.lb_programmes.Size = new System.Drawing.Size(77, 82);
+            this.lb_programmes.Size = new System.Drawing.Size(157, 82);
             this.lb_programmes.TabIndex = 17;
             this.lb_programmes.SelectedIndexChanged += new System.EventHandler(this.lb_programmes_SelectedIndexChanged);
             // 
