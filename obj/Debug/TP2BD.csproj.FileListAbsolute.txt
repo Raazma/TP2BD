@@ -18,3 +18,11 @@ C:\Users\Francis\Documents\Base de donnée\TP2BD\obj\Debug\TP2BD.csprojResolveAs
 C:\Users\Francis\Documents\Base de donnée\TP2BD\obj\Debug\TP2BD.Tb_CodeDep.resources
 C:\Users\Francis\Documents\Base de donnée\TP2BD\obj\Debug\TP2BD.Properties.Resources.resources
 C:\Users\Francis\Documents\Base de donnée\TP2BD\obj\Debug\TP2BD.csproj.GenerateResource.Cache
+C:\Users\fred\Music\Documents\Base de donne SQL\TP2BD\bin\Debug\TP2BD.exe.config
+C:\Users\fred\Music\Documents\Base de donne SQL\TP2BD\obj\Debug\TP2BD.exe
+C:\Users\fred\Music\Documents\Base de donne SQL\TP2BD\obj\Debug\TP2BD.pdb
+C:\Users\fred\Music\Documents\Base de donne SQL\TP2BD\bin\Debug\TP2BD.exe
+C:\Users\fred\Music\Documents\Base de donne SQL\TP2BD\bin\Debug\TP2BD.pdb
+C:\Users\fred\Music\Documents\Base de donne SQL\TP2BD\obj\Debug\TP2BD.Tb_CodeDep.resources
+C:\Users\fred\Music\Documents\Base de donne SQL\TP2BD\obj\Debug\TP2BD.Properties.Resources.resources
+C:\Users\fred\Music\Documents\Base de donne SQL\TP2BD\obj\Debug\TP2BD.csproj.GenerateResource.Cache
