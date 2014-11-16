@@ -11,9 +11,6 @@ using Oracle.DataAccess.Client;
 
 namespace TP2BD
 {
-
-  
-
     public partial class Form1 : Form
 
     {
@@ -139,7 +136,7 @@ namespace TP2BD
             if (oraconn.State == ConnectionState.Open)
             {
                 UnBindControls();
-                  lesINFoCoalis.Tables.Clear();
+                lesINFoCoalis.Tables.Clear();
 
                 ComboBox Choix = (ComboBox)sender;
                 switch (Choix.SelectedIndex)
@@ -188,22 +185,19 @@ namespace TP2BD
         {
             if (!string.IsNullOrEmpty(TB_RechercheNom.Text))
             {
-                UnBindControls();
-                lesINFoCoalis.Clear();
+             
 
                 if (RechercheParNom)
                 {
                     string Commande = "Select * FROM EMPLOYES where Nom like '" + TB_RechercheNom.Text + "%'";
                     try
                     {
-                        UnBindControls();
-                        lesINFoCoalis.Clear();
+                       
                         OracleDataAdapter orDataAdaptr = new OracleDataAdapter(Commande, oraconn);
                         orDataAdaptr.Fill(lesINFoCoalis, "resEmployes");
                         BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "resEmployes");
-
-                        DGV_Emp.DataSource = TheSOUSSE;
-                        fillControl("resEmployes");
+                       DGV_Emp.DataSource = TheSOUSSE;
+                       fillControl("resEmployes");
 
                     }
                     catch (Exception ex)
@@ -286,18 +280,21 @@ namespace TP2BD
 
         private void TB_RechercheNom_TextChanged(object sender, EventArgs e)
         {
-            Recherche();
-            TB_RechercheNom.AutoCompleteMode = AutoCompleteMode.Suggest;
-            if (RechercheParNom)
-            {
-                for (int i = 0; i < lesINFoCoalis.Tables[lesINFoCoalis.Tables.IndexOf("resEmployes")].Rows.Count; i++)
-			{
-			 TB_RechercheNom.AutoCompleteCustomSource.Add(lesINFoCoalis.Tables[lesINFoCoalis.Tables.IndexOf("resEmployes")].Rows[i]["nom"].ToString());
-			}
-                TB_RechercheNom.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                
-                //Reste a faire la partie du departement
-            }
+
+            //if (!string.IsNullOrEmpty(TB_RechercheNom.Text))
+            //    Recherche();
+            //if (!string.IsNullOrEmpty(TB_RechercheNom.Text))
+            //TB_RechercheNom.AutoCompleteMode = AutoCompleteMode.Suggest;
+            //if (RechercheParNom)
+            //{
+            //    for (int i = 0; i < lesINFoCoalis.Tables[lesINFoCoalis.Tables.IndexOf("resEmployes")].Rows.Count; i++)
+            //    {
+            //        TB_RechercheNom.AutoCompleteCustomSource.Add(lesINFoCoalis.Tables[lesINFoCoalis.Tables.IndexOf("resEmployes")].Rows[i]["nom"].ToString());
+            //    }
+            //    TB_RechercheNom.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            //    //Reste a faire la partie du departement
+            //}
         }
 
         private void Btn_Delete_Click(object sender, EventArgs e)
@@ -323,20 +320,15 @@ namespace TP2BD
         private void DGV_Emp_SelectionChanged(object sender, EventArgs e)
         {
            //met a jour les textbox avec les info selectioner dans le datagridview
+            if (DGV_Emp.CurrentCell.RowIndex !=0)
             this.BindingContext[lesINFoCoalis, "resEmployes"].Position = DGV_Emp.CurrentCell.RowIndex;
         }
 
         private void Btn_clear_Click(object sender, EventArgs e)
         {
             Tb_Numemp.Enabled = true;
-            Tb_Adresse.Clear();
-            TB_Code.Clear();
-            Tb_Echelon.Clear();
-            Tb_Nom.Clear();
-            Tb_Prenom.Clear();
-            Tb_Numemp.Clear();
-            Tb_salaire.Clear();
-            
+
+            UnBindControls();
         }
       
        
