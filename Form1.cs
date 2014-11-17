@@ -48,20 +48,21 @@ namespace TP2BD
             OracleCommand oracleupdate = new OracleCommand(Commande, oraconn);
             oracleupdate.CommandType = CommandType.Text;
             int nombreligne = oracleupdate.ExecuteNonQuery();
+            fillDepart();
             MessageBox.Show(nombreligne.ToString());
 	       }
-	
-             catch (Exception ex)
+
+            catch (OracleException ex)
             {
-                MessageBox.Show(ex.Message.ToString());
-               
+                GestionErreur(ex);
             }
+            fillDepart();
             //OracleDataReader oracleread = oracleupdate.ExecuteReader();
         }
 
         private void lb_programmes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string Commande = "Select NOM,PRENOM,CODEDEP FROM EMPLOYES  WHERE EMPLOYES.CODEDEP = (SELECT CODEDEP FROM DEPARTEMENTS WHERE NOMDEPARTEMENT = "+ "'" + lb_programmes.SelectedItem.ToString() + "')";
+            string Commande = "Select NOM,PRENOM,CODEDEP FROM EMPLOYES  WHERE EMPLOYES.CODEDEP = (SELECT CODEDEP FROM DEPARTEMENTS WHERE NOMDEPARTEMENT = "+ "'" + lb_programmes.SelectedItem.ToString().Substring(0,lb_programmes.SelectedItem.ToString().LastIndexOf('-')-1) + "')";
              try
              {
                  UnBindControls();
@@ -74,10 +75,9 @@ namespace TP2BD
 
                  DGV_Emp.DataSource = TheSOUSSE;
              }
-             catch (Exception ex)
+             catch (OracleException ex)
              {
-                 MessageBox.Show(ex.Message.ToString());
-
+                 GestionErreur(ex);
              }
         }
 
@@ -92,25 +92,23 @@ namespace TP2BD
                 oraconn.ConnectionString = chainedeconnexion;
                 oraconn.Open();
                 MessageBox.Show(oraconn.State.ToString());
-        }
-            catch (Exception ex)
+            }
+            catch (OracleException ex)
             {
-                MessageBox.Show(ex.Message.ToString());
-
+                GestionErreur(ex);
             }
         }
 
         private void fillControl(string table)
         {
             Tb_Numemp.Enabled = false;
-            Tb_Numemp.DataBindings.Add(new Binding("TEXT", lesINFoCoalis, table+".empno"));
-            Tb_Nom.DataBindings.Add(new Binding("TEXT", lesINFoCoalis, table + ".nom"));
-            Tb_Prenom.DataBindings.Add(new Binding("TEXT", lesINFoCoalis, table + ".PRENOM"));
-            Tb_salaire.DataBindings.Add(new Binding("TEXT", lesINFoCoalis, table + ".salaire"));
-            Tb_Echelon.DataBindings.Add(new Binding("TEXT", lesINFoCoalis, table + ".echelon"));
-            Tb_Adresse.DataBindings.Add(new Binding("TEXT", lesINFoCoalis, table + ".addresse"));
-            TB_Code.DataBindings.Add(new Binding("TEXT", lesINFoCoalis, table + ".CODEDEP"));
-
+            Tb_Numemp.DataBindings.Add("TEXT", lesINFoCoalis, table+".empno");
+            Tb_Nom.DataBindings.Add("TEXT", lesINFoCoalis, table + ".nom");
+            Tb_Prenom.DataBindings.Add("TEXT", lesINFoCoalis, table + ".PRENOM");
+            Tb_salaire.DataBindings.Add("TEXT", lesINFoCoalis, table + ".salaire");
+            Tb_Echelon.DataBindings.Add("TEXT", lesINFoCoalis, table + ".echelon");
+            Tb_Adresse.DataBindings.Add("TEXT", lesINFoCoalis, table + ".addresse");
+            TB_Code.DataBindings.Add("TEXT", lesINFoCoalis, table + ".CODEDEP");
         }
         private void UnBindControls()
         {
@@ -136,7 +134,7 @@ namespace TP2BD
             if (oraconn.State == ConnectionState.Open)
             {
                 UnBindControls();
-                lesINFoCoalis.Tables.Clear();
+                lesINFoCoalis.Clear();
 
                 ComboBox Choix = (ComboBox)sender;
                 switch (Choix.SelectedIndex)
@@ -148,7 +146,7 @@ namespace TP2BD
                         RechercheParNom = true;
                         break;
 
-                    case 2:
+                    case 2: //Par Departement
                         TB_RechercheNom.Visible = true;
                         LB_RechercheNom.Visible = true;
                         BT_Recherche.Visible = true;
@@ -168,14 +166,13 @@ namespace TP2BD
                             BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "resEmployes");
 
                             DGV_Emp.DataSource = TheSOUSSE;
-
+                            UnBindControls();
                             fillControl("resEmployes");
 
                         }
-                        catch (Exception ex)
+                        catch (OracleException ex)
                         {
-                            MessageBox.Show(ex.Message.ToString());
-
+                            GestionErreur(ex);
                         }
                         break;
                 }
@@ -185,8 +182,8 @@ namespace TP2BD
         {
             if (!string.IsNullOrEmpty(TB_RechercheNom.Text))
             {
-             
 
+                lesINFoCoalis.Clear();
                 if (RechercheParNom)
                 {
                     string Commande = "Select * FROM EMPLOYES where Nom like '" + TB_RechercheNom.Text + "%'";
@@ -197,18 +194,18 @@ namespace TP2BD
                         orDataAdaptr.Fill(lesINFoCoalis, "resEmployes");
                         BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "resEmployes");
                        DGV_Emp.DataSource = TheSOUSSE;
+                       UnBindControls();
                        fillControl("resEmployes");
 
                     }
-                    catch (Exception ex)
+                    catch (OracleException ex)
                     {
-                        MessageBox.Show(ex.Message.ToString());
-
+                        GestionErreur(ex);
                     }
                 }
                 else
                 {
-                    string Commande = "Select EMPLOYES.EMPNO, EMPLOYES.NOM, EMPLOYES.PRENOM, EMPLOYES.SALAIRE, EMPLOYES.ECHELON, EMPLOYES.ADDRESSE, EMPLOYES.CODEDEP, Departements.NomDepartement FROM EMPLOYES inner join Departements on EMPLOYES.CodeDep=Departements.CodeDep where Departements.NomDepartement like '" + TB_RechercheNom.Text + "%'";
+                    string Commande = "Select EMPLOYES.*,Departements.NomDepartement FROM EMPLOYES inner join Departements on EMPLOYES.CodeDep=Departements.CodeDep where Departements.NomDepartement like '" + TB_RechercheNom.Text + "%'";
                     try
                     {
 
@@ -217,12 +214,12 @@ namespace TP2BD
                         BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "resEmployes");
 
                         DGV_Emp.DataSource = TheSOUSSE;
+                        UnBindControls();
                         fillControl("resEmployes");
                     }
-                    catch (Exception ex)
+                    catch (OracleException ex)
                     {
-                        MessageBox.Show(ex.Message.ToString());
-
+                        GestionErreur(ex);
                     }
                 }
             }
@@ -235,37 +232,64 @@ namespace TP2BD
 
         private void Btn_Update_Click(object sender, EventArgs e)
         {
-            try
+            if (!string.IsNullOrEmpty(Tb_Numemp.Text))
             {
-                string commande = "UPDATE EMPLOYES SET NOM = '" + Tb_Nom.Text +
-                         "' , PRENOM = '" + Tb_Prenom.Text + "'" +
-                         ", SALAIRE = " + Tb_salaire.Text +
-                         ", ECHELON = " + Tb_Echelon.Text +
-                        ", ADDRESSE = '" + Tb_Nom.Text + "'" +
-                       ",CODEDEP = '" + TB_Code.Text + "' WHERE EMPNO = " + Tb_Numemp.Text;
+                try
+                {
+                    string commande = "UPDATE EMPLOYES SET NOM = '" + Tb_Nom.Text +
+                             "' , PRENOM = '" + Tb_Prenom.Text + "'" +
+                             ", SALAIRE = " + Tb_salaire.Text +
+                             ", ECHELON = " + Tb_Echelon.Text +
+                            ", ADDRESSE = '" + Tb_Nom.Text + "'" +
+                           ",CODEDEP = '" + TB_Code.Text + "' WHERE EMPNO = " + Tb_Numemp.Text;
 
 
-                OracleCommand oracleupdate = new OracleCommand(commande, oraconn);
-                oracleupdate.CommandType = CommandType.Text;
-                int nombreligne = oracleupdate.ExecuteNonQuery();
-                MessageBox.Show(nombreligne.ToString());
-            }
+                    OracleCommand oracleupdate = new OracleCommand(commande, oraconn);
+                    oracleupdate.CommandType = CommandType.Text;
+                    int nombreligne = oracleupdate.ExecuteNonQuery();
+                    MessageBox.Show(nombreligne.ToString());
+                }
 
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-
+                catch (OracleException ex)
+                {
+                    GestionErreur(ex);
+                }
             }
         }
         private void BT_Suivant_Click(object sender, EventArgs e)
         {
+            if (this.BindingContext[lesINFoCoalis, "resEmployes"].Position + 1 < DGV_Emp.Rows.Count)
+            DGV_Emp.CurrentCell = DGV_Emp.Rows[this.BindingContext[lesINFoCoalis, "resEmployes"].Position+1].Cells[0];
             this.BindingContext[lesINFoCoalis, "resEmployes"].Position += 1;
+            //if (DGV_Emp.Rows.Count > 0 && DGV_Emp.Rows.Count > this.BindingContext[lesINFoCoalis, "resEmployes"].Position)
+                
             
+        }
+
+        private void fillDepart()
+        {
+            string commande = "SELECT Departements.NomDepartement,COUNT(EMPNO) FROM EMPLOYES inner join Departements on EMPLOYES.CodeDep=Departements.CodeDep GROUP BY Departements.NomDepartement";
+            lb_programmes.Items.Clear();
+            OracleCommand oraclecomm = new OracleCommand(commande, oraconn);
+            oraclecomm.CommandType = CommandType.Text;
+            int nombreligne = oraclecomm.ExecuteNonQuery();
+            OracleDataReader oraread = oraclecomm.ExecuteReader();
+            while (oraread.Read())
+            {
+                string ligne = oraread.GetString(0) + " - " + oraread.GetInt32(1).ToString();
+                lb_programmes.Items.Add(ligne);
+            }
+            oraread.Close();
         }
         private void Form1_Load(object sender, EventArgs e)
         {
             Connect();
             CB_TypeRecherche.SelectedIndex = 0;
+
+            fillDepart();
+
+            
+
         }
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -275,7 +299,12 @@ namespace TP2BD
 
         private void BT_Precedent_Click(object sender, EventArgs e)
         {
+            if (this.BindingContext[lesINFoCoalis, "resEmployes"].Position - 1 >=0)
+            DGV_Emp.CurrentCell = DGV_Emp.Rows[this.BindingContext[lesINFoCoalis, "resEmployes"].Position-1].Cells[0];
             this.BindingContext[lesINFoCoalis, "resEmployes"].Position -= 1;
+            //if (DGV_Emp.Rows.Count > 0 && DGV_Emp.Rows.Count > this.BindingContext[lesINFoCoalis, "resEmployes"].Position)
+           
+
         }
 
         private void TB_RechercheNom_TextChanged(object sender, EventArgs e)
@@ -299,29 +328,32 @@ namespace TP2BD
 
         private void Btn_Delete_Click(object sender, EventArgs e)
         {
-            try
+            if (!string.IsNullOrEmpty(Tb_Numemp.Text))
             {
-                string commande = "DELETE FROM EMPLOYES  WHERE EMPNO = " + Tb_Numemp.Text;
+                try
+                {
+                    string commande = "DELETE FROM EMPLOYES  WHERE EMPNO = " + Tb_Numemp.Text;
 
-                OracleCommand oracleupdate = new OracleCommand(commande, oraconn);
-                oracleupdate.CommandType = CommandType.Text;
-                int nombreligne = oracleupdate.ExecuteNonQuery();
-                MessageBox.Show(nombreligne.ToString());
-                
-            }
+                    OracleCommand oracleupdate = new OracleCommand(commande, oraconn);
+                    oracleupdate.CommandType = CommandType.Text;
+                    int nombreligne = oracleupdate.ExecuteNonQuery();
+                    MessageBox.Show(nombreligne.ToString());
 
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
+                }
 
+                catch (OracleException ex)
+                {
+                    GestionErreur(ex);
+                }
+                fillDepart();
             }
         }
 
         private void DGV_Emp_SelectionChanged(object sender, EventArgs e)
         {
            //met a jour les textbox avec les info selectioner dans le datagridview
-            if (DGV_Emp.CurrentCell.RowIndex !=0)
-            this.BindingContext[lesINFoCoalis, "resEmployes"].Position = DGV_Emp.CurrentCell.RowIndex;
+            if( DGV_Emp.Rows.Count > 0 )
+                this.BindingContext[lesINFoCoalis, "resEmployes"].Position = DGV_Emp.CurrentCell.RowIndex;
         }
 
         private void Btn_clear_Click(object sender, EventArgs e)
@@ -329,6 +361,44 @@ namespace TP2BD
             Tb_Numemp.Enabled = true;
 
             UnBindControls();
+        }
+
+        private string GestionErreur(OracleException ex)
+        {
+            string msgException = "";
+
+            switch (ex.Number)
+            {
+                case 2292:
+                    MessageBox.Show("Tentative de suppression d'une clé lié à une clé étrangère ", "Erreur 1407", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 1407:
+                    MessageBox.Show("Vous ne pouvez pas mettre a jour une colonne avec une valeur null", "Erreur 1407", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 1400:
+                    MessageBox.Show("Vous ne pouvez pas ajouter une colonne avec une valeur null", "Erreur 1400", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 1:
+                    MessageBox.Show("Le numero d'employé doit être unique", "Erreur 1", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 1410:
+                    MessageBox.Show("Vous ne pouvez pas mettre de valeur null", "Erreur 1410", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 1017:
+                    MessageBox.Show("Mot de passe ou nom d'utilisateur invalide", "Erreur 1017", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 12170:
+                    MessageBox.Show("La base de données est indisponible,réessayer plus tard", "Erreur 12170", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 12543:
+                    MessageBox.Show("Connexion impossible,Vérifiez votre connection internet", "Erreur 12543", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                default:
+                    MessageBox.Show("Une erreur non-gerée est survenue : " + ex.Number.ToString() + ":" + ex.Message.ToString(), ex.Number.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+            }
+
+            return msgException;
         }
       
        
