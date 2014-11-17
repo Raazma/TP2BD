@@ -75,6 +75,18 @@ namespace TP2BD
 
                  DGV_Emp.DataSource = TheSOUSSE;
                  fillControl("resEmployes");
+                 bt_debut.Enabled = false;
+                 BT_Precedent.Enabled = false;
+                 if (this.BindingContext[lesINFoCoalis, "resEmployes"].Count <= 1)
+                 {
+                     bt_fin.Enabled = false;
+                     BT_Suivant.Enabled = false;
+                 }
+                 else
+                 {
+                     bt_fin.Enabled = true;
+                     BT_Suivant.Enabled = true;
+                 }
              }
              catch (OracleException ex)
              {
@@ -136,7 +148,7 @@ namespace TP2BD
             {
                 UnBindControls();
                 lesINFoCoalis.Clear();
-
+                
                 ComboBox Choix = (ComboBox)sender;
                 switch (Choix.SelectedIndex)
                 {
@@ -169,6 +181,18 @@ namespace TP2BD
                             DGV_Emp.DataSource = TheSOUSSE;
                             UnBindControls();
                             fillControl("resEmployes");
+                            bt_debut.Enabled = false;
+                            BT_Precedent.Enabled = false;
+                            if (this.BindingContext[lesINFoCoalis, "resEmployes"].Count <= 1)
+                            {
+                                bt_fin.Enabled = false;
+                                BT_Suivant.Enabled = false;
+                            }
+                            else
+                            {
+                                bt_fin.Enabled = true;
+                                BT_Suivant.Enabled = true;
+                            }
 
                         }
                         catch (OracleException ex)
@@ -197,6 +221,18 @@ namespace TP2BD
                        DGV_Emp.DataSource = TheSOUSSE;
                        UnBindControls();
                        fillControl("resEmployes");
+                       bt_debut.Enabled = false;
+                       BT_Precedent.Enabled = false;
+                       if (this.BindingContext[lesINFoCoalis, "resEmployes"].Count <= 1)
+                       {
+                           bt_fin.Enabled = false;
+                           BT_Suivant.Enabled = false;
+                       }
+                       else
+                       {
+                           bt_fin.Enabled = true;
+                           BT_Suivant.Enabled = true;
+                       }
 
                     }
                     catch (OracleException ex)
@@ -217,6 +253,18 @@ namespace TP2BD
                         DGV_Emp.DataSource = TheSOUSSE;
                         UnBindControls();
                         fillControl("resEmployes");
+                        bt_debut.Enabled = false;
+                        BT_Precedent.Enabled = false;
+                        if(this.BindingContext[lesINFoCoalis, "resEmployes"].Count<=1)
+                        {
+                            bt_fin.Enabled = false;
+                            BT_Suivant.Enabled = false;
+                        }
+                        else
+                        {
+                            bt_fin.Enabled = true;
+                            BT_Suivant.Enabled = true;
+                        }
                     }
                     catch (OracleException ex)
                     {
@@ -260,9 +308,23 @@ namespace TP2BD
         private void BT_Suivant_Click(object sender, EventArgs e)
         {
             if (this.BindingContext[lesINFoCoalis, "resEmployes"].Position + 1 < DGV_Emp.Rows.Count)
-            DGV_Emp.CurrentCell = DGV_Emp.Rows[this.BindingContext[lesINFoCoalis, "resEmployes"].Position+1].Cells[0];
+            {
+                DGV_Emp.CurrentCell = DGV_Emp.Rows[this.BindingContext[lesINFoCoalis, "resEmployes"].Position + 1].Cells[0];
+            }
+            if (this.BindingContext[lesINFoCoalis, "resEmployes"].Position + 1 < DGV_Emp.Rows.Count - 1)
+            {
+                BT_Precedent.Enabled = true;
+                bt_debut.Enabled = true;
+            }
+            else
+            {
+                bt_fin.Enabled = false;
+                BT_Suivant.Enabled = false;
+                BT_Precedent.Enabled = true;
+                bt_debut.Enabled = true;
+            }
             this.BindingContext[lesINFoCoalis, "resEmployes"].Position += 1;
-            //if (DGV_Emp.Rows.Count > 0 && DGV_Emp.Rows.Count > this.BindingContext[lesINFoCoalis, "resEmployes"].Position)
+           
                 
             
         }
@@ -300,10 +362,25 @@ namespace TP2BD
 
         private void BT_Precedent_Click(object sender, EventArgs e)
         {
-            if (this.BindingContext[lesINFoCoalis, "resEmployes"].Position - 1 >=0)
-            DGV_Emp.CurrentCell = DGV_Emp.Rows[this.BindingContext[lesINFoCoalis, "resEmployes"].Position-1].Cells[0];
+            if (this.BindingContext[lesINFoCoalis, "resEmployes"].Position - 1 >= 0)
+            {
+                DGV_Emp.CurrentCell = DGV_Emp.Rows[this.BindingContext[lesINFoCoalis, "resEmployes"].Position - 1].Cells[0];
+            }
+            if (this.BindingContext[lesINFoCoalis, "resEmployes"].Position - 1 > 0)
+            {
+                BT_Suivant.Enabled = true;
+                bt_fin.Enabled = true;
+            }
+            else
+            {
+
+                bt_debut.Enabled = false;
+                BT_Precedent.Enabled = false;
+                bt_fin.Enabled = true;
+                BT_Suivant.Enabled = true;
+            }
             this.BindingContext[lesINFoCoalis, "resEmployes"].Position -= 1;
-            //if (DGV_Emp.Rows.Count > 0 && DGV_Emp.Rows.Count > this.BindingContext[lesINFoCoalis, "resEmployes"].Position)
+            
            
 
         }
@@ -394,6 +471,12 @@ namespace TP2BD
                 case 12543:
                     MessageBox.Show("Connexion impossible,Vérifiez votre connection internet", "Erreur 12543", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
+                case 2291:
+                    MessageBox.Show("Code Departement invalide", "Erreur 2291", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 2290:
+                    MessageBox.Show("Salaire ou echelon invalide", "Erreur 2290", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
                 default:
                     MessageBox.Show("Une erreur non-gerée est survenue : " + ex.Number.ToString() + ":" + ex.Message.ToString(), ex.Number.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
@@ -408,6 +491,13 @@ namespace TP2BD
             {
                 DGV_Emp.CurrentCell = DGV_Emp.Rows[0].Cells[0];
                 this.BindingContext[lesINFoCoalis, "resEmployes"].Position = 0;
+
+                    bt_debut.Enabled = false;
+                    BT_Precedent.Enabled = false;
+                    bt_fin.Enabled = true;
+                    BT_Suivant.Enabled = true;
+
+                
             }
         }
 
@@ -417,6 +507,28 @@ namespace TP2BD
             {
                 DGV_Emp.CurrentCell = DGV_Emp.Rows[this.BindingContext[lesINFoCoalis, "resEmployes"].Count - 1].Cells[0];
                 this.BindingContext[lesINFoCoalis, "resEmployes"].Position = this.BindingContext[lesINFoCoalis, "resEmployes"].Count - 1;
+                
+                    bt_fin.Enabled = false;
+                    BT_Suivant.Enabled = false;
+                    BT_Precedent.Enabled = true;
+                    bt_debut.Enabled = true;
+                
+            }
+        }
+
+        private void Tb_Numemp_TextChanged(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(Tb_Numemp.Text))
+            {
+                Btn_Delete.Enabled = false;
+                Btn_Insert.Enabled = false;
+                Btn_Update.Enabled = false;
+            }
+            else
+            {
+                Btn_Delete.Enabled = true;
+                Btn_Insert.Enabled = true;
+                Btn_Update.Enabled = true;
             }
         }
       

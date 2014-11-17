@@ -73,6 +73,7 @@
             this.Tb_Numemp.Name = "Tb_Numemp";
             this.Tb_Numemp.Size = new System.Drawing.Size(132, 22);
             this.Tb_Numemp.TabIndex = 2;
+            this.Tb_Numemp.TextChanged += new System.EventHandler(this.Tb_Numemp_TextChanged);
             // 
             // Tb_Nom
             // 
