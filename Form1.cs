@@ -62,18 +62,19 @@ namespace TP2BD
 
         private void lb_programmes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string Commande = "Select NOM,PRENOM,CODEDEP FROM EMPLOYES  WHERE EMPLOYES.CODEDEP = (SELECT CODEDEP FROM DEPARTEMENTS WHERE NOMDEPARTEMENT = "+ "'" + lb_programmes.SelectedItem.ToString().Substring(0,lb_programmes.SelectedItem.ToString().LastIndexOf('-')-1) + "')";
+            string Commande = "Select * FROM EMPLOYES  WHERE EMPLOYES.CODEDEP = (SELECT CODEDEP FROM DEPARTEMENTS WHERE NOMDEPARTEMENT = "+ "'" + lb_programmes.SelectedItem.ToString().Substring(0,lb_programmes.SelectedItem.ToString().LastIndexOf('-')-1) + "')";
              try
              {
                  UnBindControls();
                  DGV_Emp.DataSource = null;
                  DGV_Emp.Columns.Clear();
-                 lesINFoCoalis.Tables.Clear();
+                 lesINFoCoalis.Clear();
                  OracleDataAdapter orDataAdaptr = new OracleDataAdapter(Commande, oraconn);
                  orDataAdaptr.Fill(lesINFoCoalis, "resEmployes");
                  BindingSource TheSOUSSE = new BindingSource(lesINFoCoalis, "resEmployes");
 
                  DGV_Emp.DataSource = TheSOUSSE;
+                 fillControl("resEmployes");
              }
              catch (OracleException ex)
              {
@@ -338,7 +339,7 @@ namespace TP2BD
                     oracleupdate.CommandType = CommandType.Text;
                     int nombreligne = oracleupdate.ExecuteNonQuery();
                     MessageBox.Show(nombreligne.ToString());
-
+                    string Commande = "Select * FROM EMPLOYES";                    
                 }
 
                 catch (OracleException ex)
@@ -399,6 +400,24 @@ namespace TP2BD
             }
 
             return msgException;
+        }
+
+        private void bt_debut_Click(object sender, EventArgs e)
+        {
+            if (this.BindingContext[lesINFoCoalis, "resEmployes"].Count > 0)
+            {
+                DGV_Emp.CurrentCell = DGV_Emp.Rows[0].Cells[0];
+                this.BindingContext[lesINFoCoalis, "resEmployes"].Position = 0;
+            }
+        }
+
+        private void bt_fin_Click(object sender, EventArgs e)
+        {
+            if (this.BindingContext[lesINFoCoalis, "resEmployes"].Count > 0)
+            {
+                DGV_Emp.CurrentCell = DGV_Emp.Rows[this.BindingContext[lesINFoCoalis, "resEmployes"].Count - 1].Cells[0];
+                this.BindingContext[lesINFoCoalis, "resEmployes"].Position = this.BindingContext[lesINFoCoalis, "resEmployes"].Count - 1;
+            }
         }
       
        

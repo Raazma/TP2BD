@@ -58,6 +58,8 @@
             this.BT_Suivant = new System.Windows.Forms.Button();
             this.BT_Precedent = new System.Windows.Forms.Button();
             this.Btn_Delete = new System.Windows.Forms.Button();
+            this.bt_fin = new System.Windows.Forms.Button();
+            this.bt_debut = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Emp)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -234,7 +236,7 @@
             this.Btn_Update.Name = "Btn_Update";
             this.Btn_Update.Size = new System.Drawing.Size(100, 28);
             this.Btn_Update.TabIndex = 20;
-            this.Btn_Update.Text = "Update";
+            this.Btn_Update.Text = "Mise à jour";
             this.Btn_Update.UseVisualStyleBackColor = true;
             this.Btn_Update.Click += new System.EventHandler(this.Btn_Update_Click);
             // 
@@ -272,7 +274,7 @@
             this.Btn_clear.Name = "Btn_clear";
             this.Btn_clear.Size = new System.Drawing.Size(100, 28);
             this.Btn_clear.TabIndex = 21;
-            this.Btn_clear.Text = "CLear";
+            this.Btn_clear.Text = "Vider";
             this.Btn_clear.UseVisualStyleBackColor = true;
             this.Btn_clear.Click += new System.EventHandler(this.Btn_clear_Click);
             // 
@@ -389,15 +391,39 @@
             this.Btn_Delete.Name = "Btn_Delete";
             this.Btn_Delete.Size = new System.Drawing.Size(100, 28);
             this.Btn_Delete.TabIndex = 26;
-            this.Btn_Delete.Text = "Delete";
+            this.Btn_Delete.Text = "Supprimer";
             this.Btn_Delete.UseVisualStyleBackColor = true;
             this.Btn_Delete.Click += new System.EventHandler(this.Btn_Delete_Click);
+            // 
+            // bt_fin
+            // 
+            this.bt_fin.Location = new System.Drawing.Point(983, 486);
+            this.bt_fin.Margin = new System.Windows.Forms.Padding(4);
+            this.bt_fin.Name = "bt_fin";
+            this.bt_fin.Size = new System.Drawing.Size(127, 28);
+            this.bt_fin.TabIndex = 28;
+            this.bt_fin.Text = "Fin";
+            this.bt_fin.UseVisualStyleBackColor = true;
+            this.bt_fin.Click += new System.EventHandler(this.bt_fin_Click);
+            // 
+            // bt_debut
+            // 
+            this.bt_debut.Location = new System.Drawing.Point(812, 486);
+            this.bt_debut.Margin = new System.Windows.Forms.Padding(4);
+            this.bt_debut.Name = "bt_debut";
+            this.bt_debut.Size = new System.Drawing.Size(127, 28);
+            this.bt_debut.TabIndex = 27;
+            this.bt_debut.Text = "Début";
+            this.bt_debut.UseVisualStyleBackColor = true;
+            this.bt_debut.Click += new System.EventHandler(this.bt_debut_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1125, 527);
+            this.Controls.Add(this.bt_fin);
+            this.Controls.Add(this.bt_debut);
             this.Controls.Add(this.Btn_Delete);
             this.Controls.Add(this.BT_Suivant);
             this.Controls.Add(this.Btn_Insert);
@@ -453,6 +479,8 @@
         private System.Windows.Forms.Button BT_Precedent;
         private System.Windows.Forms.Button Btn_Delete;
         private System.Windows.Forms.Button Btn_clear;
+        private System.Windows.Forms.Button bt_fin;
+        private System.Windows.Forms.Button bt_debut;
     }
 }
 
